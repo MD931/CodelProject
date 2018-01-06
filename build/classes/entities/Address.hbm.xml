@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="entities">
+	<class name="Address" table="address">
+ 	 <cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" column="id">
+			<generator class="increment" />
+		</id>
+		<property name="street">
+			<column name="street" />
+		</property>
+
+		<property name="city">
+			<column name="city" />
+		</property>
+
+		<property name="zip">
+			<column name="zip" />
+		</property>
+
+		<property name="country">
+			<column name="country" />
+		</property>
+
+	</class>
+</hibernate-mapping>
