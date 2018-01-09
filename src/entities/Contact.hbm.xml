@@ -4,9 +4,8 @@
 <hibernate-mapping package="entities">
 
 	<class name="Contact" table="contacts">
-	
- 	 <cache usage="read-write"/>
-		<id name="id" type="java.lang.Integer" column="id">
+
+		<id name="id" column="id_contact">
 			<generator class="increment" />
 		</id>
 		
@@ -18,26 +17,24 @@
 			<column name="lastname" />
 		</property>
 
-		<property name="email">
-			<column name="email" />
-		</property>
+		<property name="email" />
 
 		<many-to-one class="Address" name="add" column="id_address" 
-			unique="true" lazy="false" cascade="delete-orphan"/>
+			unique="true" lazy="false" cascade="persist"/>
 
 		<set name="books" table="contact_contactgroup" lazy="false">
 			<key column="id_contact" />
 			<many-to-many class="ContactGroup" column="id_contactgroup" />
 		</set>
 	
-		<set name="profiles" inverse="true" lazy="false"  cascade="delete-orphan">
+		<set name="profiles" inverse="true" lazy="false" cascade="persist">
 			<key column="id_contact" not-null="true"/>
 			<one-to-many class="PhoneNumber" />
 		</set>
 
 		<joined-subclass name="Entreprise" table="entreprise">
 			<key column="id_contact" />
-			<property name="numSiret" column="numSiret" />
+			<property name="numSiret" column="num_siret" />
 		</joined-subclass>
 
 	</class>

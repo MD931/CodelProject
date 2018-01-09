@@ -3,10 +3,9 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="entities">
 
-  <class name="PhoneNumber" table="phonenumber">
+  <class name="PhoneNumber" table="phonenumbers">
   
- 	 <cache usage="read-write"/>
-  	 <id name="id" type="java.lang.Integer" column="id" >
+  	 <id name="id" column="id_phonenumber" >
    		<generator class="increment"/>
   	 </id>
 	<property name="phoneKind">
