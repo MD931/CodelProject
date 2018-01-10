@@ -27,11 +27,15 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		System.out.println(username+" "+password);
 		RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
-		if(username.equals(password)) {
+		if( username.length()> 0 && username.equals(password)) {
 			rd.forward(request, response);
+			//response.getWriter().write("reussis");
 		}else {
-			response.sendRedirect("index.html");
+			//response.sendRedirect("index.html");
+			response.getWriter().write("false");
+
 		}
 	}
 

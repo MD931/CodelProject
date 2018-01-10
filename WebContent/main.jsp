@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 <title>MAIN</title>
 </head>
 <body>
@@ -13,4 +14,5 @@
 <a href="./removeContact.jsp">DELETE</a>
 
 </body>
+<script src="js/bootstrap/bootstrap.min.js"></script>
 </html>

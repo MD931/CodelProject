@@ -2,14 +2,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link href="css/auther/index.css" rel="stylesheet">
+<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+<title>Accueil</title>
 </head>
 <body>
-<form method="POST" action="login">
+	<div class=" alert alert-danger text-center" id="alert" style="display:none;"> </div>
+	<div class="card card-container">
+		<img id="profile-img" class="profile-img-card"
+			src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+		<p id="profile-name" class="profile-name-card"></p>
+		<form class="form-signin">
 
-	Username : <input type="text" name="username" /><br />
-	Password : <input type="password" name="password" /><br />
-	<input type="submit" value="Connexion" />
-</form>
+			<span id="reauth-email" class="reauth-email"></span> <input
+				type="text" id="username" class="form-control"
+				placeholder="Username" name="username" required autofocus> <input
+				type="password" id="password" class="form-control"
+				placeholder="Password" name="password" required>
+
+			<Button class="btn btn-lg btn-primary btn-block btn-signin" name="login" id="login">Connexion</Button>
+			<img hidden="hidden"
+				src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+		</form>
+		<!-- /form -->
+	</div>
+	<!-- /card-container -->
 </body>
+<script type="text/javascript" src="js/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/auther/index.js"></script>
+<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
 </html>
+
+
