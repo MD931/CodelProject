@@ -12,6 +12,7 @@ public class Contact {
 	private Address add;
 	private Set<ContactGroup> books;
 	private Set<PhoneNumber> profiles;
+	private int version;
 	
 	public Contact(){
 		super();

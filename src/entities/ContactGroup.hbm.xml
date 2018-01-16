@@ -2,19 +2,23 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="entities">
-  <class name="ContactGroup" table="contactgroups">
+	<class name="ContactGroup" table="contactgroups">
+	
+		<cache usage="read-write" />
+		<id name="groupId" column="id_group">
+			<generator class="increment" />
+		</id>
+		<version name="version" access="field" column="version" />
 
-  	 <id name="groupId" column="id_group" >
-   		<generator class="increment"/>
-  	 </id>
-	 <property name="groupName">
-  	 	<column name="group_name"/>
-  	 </property>
+		<property name="groupName">
+			<column name="group_name" />
+		</property>
 
-	<set name="contacts" table="contact_contactgroup" inverse="true" lazy="true">
-		<key column="id_contactgroup"/>
-		<many-to-many class="Contact" column="id_contact"/>
-	</set>
-		
-  </class>
+		<set name="contacts" table="contact_contactgroup" inverse="true"
+			lazy="true">
+			<key column="id_contactgroup" />
+			<many-to-many class="Contact" column="id_contact" />
+		</set>
+
+	</class>
 </hibernate-mapping>

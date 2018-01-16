@@ -10,8 +10,8 @@ public class ContactServices {
 		dao.create(id, name, phone, email);
 	}
 	
-	public static void read(String name) {
-		dao.read(name);
+	public static void read(Long id) {
+		dao.read(id);
 	}
 	
 	public static void update(String id) {

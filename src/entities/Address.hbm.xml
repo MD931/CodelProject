@@ -3,11 +3,13 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="entities">
 	<class name="Address" table="addresses">
-
+	
+		<cache usage="read-write" />
 		<id name="id" column="id_address">
 			<generator class="increment" />
 		</id>
-		
+		<version name="version" access="field" column="version" />
+
 		<property name="street" />
 
 		<property name="city" />
