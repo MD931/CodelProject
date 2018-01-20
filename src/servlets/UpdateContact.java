@@ -16,7 +16,10 @@ public class UpdateContact extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id  = request.getParameter("id");
-		ContactServices.update(id);
+		String name = request.getParameter("firstName");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		ContactServices.update(Long.parseLong(id), name, phone, email);
 	}
 
 }

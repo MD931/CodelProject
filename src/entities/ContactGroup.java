@@ -7,6 +7,8 @@ public class ContactGroup {
 	private Integer groupId;
 	private String groupName;
 	private Set<Contact> contacts;
+	private UserAccount user;
+
 	private int version;
 	
 	public ContactGroup() {
@@ -38,5 +40,12 @@ public class ContactGroup {
 	
 	public void setContacts(Set<Contact> contacts) {
 		this.contacts = contacts;
+	}
+	
+	public UserAccount getUser() {
+		return user;
+	}
+	public void setUser(UserAccount user) {
+		this.user = user;
 	}
 }

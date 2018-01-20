@@ -18,11 +18,13 @@
 
 <div class='login'>
   <h2>Login</h2>
+  <form action="./login" method="POST">
   <input name='username' placeholder='Username or Email' type='text'>
   <input id='pw' name='password' placeholder='Password' type='password'>
 
   <input class='animated' type='submit' value='Login'>
   <a class='forgot' href='register.jsp'>Not registred yet?</a>
+  </form>
 </div>
   
 

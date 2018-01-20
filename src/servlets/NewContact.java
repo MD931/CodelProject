@@ -6,7 +6,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import daos.DAOContact;
+import daos.DAOUser;
 import services.ContactServices;
+import services.UserServices;
 
 /**
  * Servlet implementation class CreateContactServlet
@@ -19,7 +22,8 @@ public class NewContact extends HttpServlet {
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
-		ContactServices.create(id, name, phone, email);
+		
+		ContactServices.create(id, name, phone, email, UserServices.read(Long.parseLong("1")));
 	}
 
 }

@@ -22,6 +22,9 @@
 
 		<many-to-one class="Address" name="add" column="id_address"
 			unique="true" lazy="false" cascade="persist" optimistic-lock="false" />
+			
+		<many-to-one name="user" class="UserAccount" column="id_user"
+			not-null="true" />	
 
 		<set name="books" table="contact_contactgroup" lazy="false">
 			<key column="id_contact" />
@@ -32,11 +35,14 @@
 			<key column="id_contact" not-null="true" />
 			<one-to-many class="PhoneNumber" />
 		</set>
-
+		
+			
 		<joined-subclass name="Entreprise" table="entreprise">
 			<key column="id_contact" />
 			<property name="numSiret" column="num_siret" />
 		</joined-subclass>
+		
+		
 
 	</class>
 </hibernate-mapping>
