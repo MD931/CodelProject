@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,10 +29,11 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String confirmPassword = request.getParameter("confrimPassword");
+		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 		try {
-			boolean res = UserServices.registerUser(username, password);
-			response.getWriter().write(String.valueOf(res));
-			
+			String res = UserServices.registerUser(username,password,confirmPassword);
+			response.getWriter().write(res);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

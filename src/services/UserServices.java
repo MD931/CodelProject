@@ -8,19 +8,23 @@ public class UserServices {
 	
 	final static DAOUser dao = new DAOUser();
 	
-	public static boolean loginUser(String usernameORemail, String password){
-		return false;
-	}
-	
-	public static boolean registerUser(String username, String password){
-		if(FieldValidator.validateRegistration(username, password)){
-			return DAOUser.createAccount(username, password);
+	public static UserAccount loginUser(String username, String password){
+		if(FieldValidator.validateLogin(username, password)) {
+			return dao.connectToAccount(username, password); 
 		}
-		return false;
+		return null;
 	}
 	
-	public static UserAccount read(Long id) {
-		return dao.read(id);
+	public static String registerUser(String username, String password,String confirmPassword){
+		if(FieldValidator.validateRegistration(username, password,confirmPassword)){
+			if(DAOUser.getUserByUsername(username)==null) {
+				DAOUser.createAccount(username, password);
+				return "success";
+			} else 
+				return "exists";
+		}
+		return "failed";
 	}
+	
 
 }

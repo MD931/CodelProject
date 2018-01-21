@@ -8,17 +8,18 @@ import util.HibernateUtil;
 
 public class DAOUser {
 
-	public static boolean createAccount(String username,String password){
-	UserAccount userAccount = new UserAccount();
-	//Make userAccount persistent ( persist it )
-	userAccount.setUsername(username);
-	userAccount.setPassword(password);
-	userAccount.toString();
-	//commit transaction
-		return true;
+	public static void createAccount(String username,String password){
+		Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+		if(!s.getTransaction().isActive()) 
+			s.beginTransaction();
+		UserAccount userAccount = new UserAccount();
+		userAccount.setUsername(username);
+		userAccount.setPassword(password);
+		s.persist(userAccount);
+		s.getTransaction().commit();
 	}
 	
-	public UserAccount read(Long id) {
+	public static UserAccount read(Long id) {
 		Session s = HibernateUtil.getSessionFactory().getCurrentSession();
 		if(!s.getTransaction().isActive()) s.beginTransaction();
 		UserAccount user=(UserAccount) s.load(UserAccount.class,
@@ -26,8 +27,28 @@ public class DAOUser {
 		return user;
 	}
 	
-	public static boolean connectToAccount(String username,String password){
-		System.out.println("DAO USER");
-		return true;
+	public static UserAccount getUserByUsername(String username) {
+		Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+		if(!s.getTransaction().isActive()) s.beginTransaction();
+		UserAccount user = (UserAccount)
+			    s.createQuery("from UserAccount where username = :username")
+			           .setString("username", username)
+			           .uniqueResult();
+		return user;
+	}
+	
+	public static UserAccount connectToAccount(String username,String password){
+		Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+		if(!s.getTransaction().isActive()) s.beginTransaction();
+		UserAccount user = (UserAccount)
+			    s.createQuery("from UserAccount where username = :username and password = :password")
+			           .setString("username", username)
+			           .setString("password", password)
+			           .uniqueResult();
+		return user;
+	}
+	
+	public static UserAccount updateAccount(String username,String password) {
+		return null;
 	}
 }

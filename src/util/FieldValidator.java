@@ -14,9 +14,15 @@ public class FieldValidator {
 		return true;
 	} 
 	
-	public static boolean validateRegistration(String username,String password){
-		if("".equals(password) || "".equals(username)) 
+	public static boolean validateRegistration(String username,String password,String confirmPassword){
+		if("".equals(password) || "".equals(username)) {
 			return false;
+		}
+		
+		if(!(password.equals(confirmPassword))) {
+			return false;
+		}
+			
 		return true;
 	}
 

@@ -23,7 +23,7 @@ public class NewContact extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
 		
-		ContactServices.create(id, name, phone, email, UserServices.read(Long.parseLong("1")));
+		//ContactServices.create(id, name, phone, email, UserServices.read(Long.parseLong("1")));
 	}
 
 }
