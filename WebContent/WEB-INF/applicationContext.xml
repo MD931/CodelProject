@@ -4,10 +4,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-	<bean id="daoContact" class="daos.DAOContact" scope="singleton" />
+
+	<bean id="daoContact" class="daos.DAOContact" scope="singleton" >
+		<!-- <property name="sessionFactory" ref="sessionFactory"/>-->
+	</bean>
 	
 	<bean id="contactServices" class="services.ContactServices" scope="singleton" >
-		<property name="dao" ref="daoContact"/>
+		<constructor-arg ref="daoContact"></constructor-arg>
 	</bean>
 
 	
@@ -40,9 +43,9 @@
 	
 	
 	<bean id="contact2" class="entities.Contact">
-		<constructor-arg type="String"><value>John</value></constructor-arg>
-		<constructor-arg type="String"><value>Doe</value></constructor-arg>
-		<constructor-arg type="String"><value>john.doe@doe.fr</value></constructor-arg>		
+		<constructor-arg ><value>John</value></constructor-arg>
+		<constructor-arg ><value>Doe</value></constructor-arg>
+		<constructor-arg ><value>john.doe@doe.fr</value></constructor-arg>		
 		<property name="add" ref="address2" />
 		<property name="user" ref="user1" />
 	</bean>

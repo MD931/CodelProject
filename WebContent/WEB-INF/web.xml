@@ -3,24 +3,22 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	
-	<!-- AJOUT -->
-	<listener>
-		<listener-class>
-			org.springframework.web.context.ContextLoaderListener
-		</listener-class>
-	</listener>
-	<listener>
-		<listener-class>
-			org.springframework.web.context.request.RequestContextListener
-		</listener-class>
-	</listener>
-	<!-- AJOUT -->
-	
+
 	<display-name>CodelProject</display-name>
 	<welcome-file-list>
 		<welcome-file>register.jsp</welcome-file>
 	</welcome-file-list>
+
+	<!-- AJOUT -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<!-- AJOUT -->
+
 	<servlet>
 		<description></description>
 		<display-name>LoginServlet</display-name>

@@ -9,7 +9,7 @@ import entities.Contact;
 import entities.UserAccount;
 import util.HibernateUtil;
 
-public class DAOContact extends HibernateDaoSupport  implements IDAOContact{
+public class DAOContact /*extends HibernateDaoSupport*/  implements IDAOContact{
 	
 	public void create(String id, String name, String phone, String email, UserAccount user) {
 		System.out.println("Create "+id+", "+name+", "+phone+", "+email);
