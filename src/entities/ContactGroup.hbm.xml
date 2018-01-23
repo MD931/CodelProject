@@ -19,9 +19,6 @@
 			<key column="id_contactgroup" />
 			<many-to-many class="Contact" column="id_contact" />
 		</set>
-		
-		<many-to-one name="user" class="UserAccount" column="id_user"
-			not-null="true" />
 
 	</class>
 </hibernate-mapping>

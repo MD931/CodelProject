@@ -6,7 +6,6 @@ public class PhoneNumber {
 	private String phoneKind;
 	private String phoneNumber;
 	private Contact contact;
-	private UserAccount user;
 	private int version;
 	
 	public PhoneNumber() {
@@ -50,13 +49,6 @@ public class PhoneNumber {
 	
 	public void setContact(Contact contact) {
 		this.contact = contact;
-	}
-	
-	public UserAccount getUser() {
-		return user;
-	}
-	public void setUser(UserAccount user) {
-		this.user = user;
 	}
 
 }

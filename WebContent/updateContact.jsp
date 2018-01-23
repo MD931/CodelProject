@@ -1,6 +1,5 @@
 <%@page import="entities.PhoneNumber"%>
 <%@page import="entities.Contact"%>
-<%@page import="entities.UserAccount"%>
 <%@page import="entities.ContactGroup"%>
 <%@page import="services.ContactServices"%>
 <%@page import="java.util.List"%>

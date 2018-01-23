@@ -8,12 +8,9 @@
 <title>MAIN</title>
 </head>
 <body>
-<a href="./addContact.jsp">CREATE</a>
-<a href="./searchContact.jsp">READ</a>
-<a href="./updateContact.jsp">UPDATE</a>
-<a href="./removeContact.jsp">DELETE</a>
-<a href="./peupler.jsp">Peupler</a>
-<%= session.getAttribute("currentUser") %>
+<form action="./fakeContact" method="post">
+	<input type="submit" value="Peupler" />
+</form>
 </body>
 <script src="js/bootstrap/bootstrap.min.js"></script>
 </html>

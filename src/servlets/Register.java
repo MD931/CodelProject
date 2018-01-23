@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import services.UserServices;
-
 /**
  * Servlet implementation class Register
  */
@@ -31,12 +29,12 @@ public class Register extends HttpServlet {
 		String password = request.getParameter("password");
 		String confirmPassword = request.getParameter("confrimPassword");
 		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-		try {
+		/*try {
 			String res = UserServices.registerUser(username,password,confirmPassword);
 			response.getWriter().write(res);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 }

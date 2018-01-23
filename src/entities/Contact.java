@@ -12,7 +12,6 @@ public class Contact {
 	private Address add;
 	private Set<ContactGroup> books;
 	private Set<PhoneNumber> profiles;
-	private UserAccount user;
 	private int version;
 	
 	public Contact(){
@@ -80,12 +79,6 @@ public class Contact {
 	public void setBooks(Set<ContactGroup> books) {
 		this.books = books;
 	}
-	
-	public UserAccount getUser() {
-		return user;
-	}
-	public void setUser(UserAccount user) {
-		this.user = user;
-	}
+
 
 }

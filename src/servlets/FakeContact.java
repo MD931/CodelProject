@@ -10,25 +10,35 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import entities.Contact;
 import services.ContactServices;
 
 /**
- * Servlet implementation class CreateContactServlet
+ * Servlet implementation class FakeContact
  */
-public class NewContact extends HttpServlet {
+public class FakeContact extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public FakeContact() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id  = request.getParameter("id");
-		String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		/*
-		ContactServices.create(id, name, phone, email, UserServices.read(Long.parseLong("1")));*/
 		ApplicationContext context =
 				WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		ContactServices cs = (ContactServices) context.getBean("contactServices");
-		cs.create(id, name, phone, email);
+		Contact c1 = (Contact) context.getBean("contact1");
+		Contact c2 = (Contact) context.getBean("contact2");
+		
+		cs.createContact(c1);
+		cs.createContact(c2);
 	}
 
 }

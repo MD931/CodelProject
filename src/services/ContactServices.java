@@ -3,7 +3,6 @@ package services;
 import daos.DAOContact;
 import daos.interfaces.IDAOContact;
 import entities.Contact;
-import entities.UserAccount;
 
 public class ContactServices {
 	
@@ -15,8 +14,8 @@ public class ContactServices {
 		this.dao = dao;
 	}
 	
-	public void create(String id, String name, String phone, String email, UserAccount user) {
-		dao.create(id, name, phone, email, user);
+	public void create(String id, String name, String phone, String email) {
+		dao.create(id, name, phone, email);
 	}
 	
 	public Contact read(Long id) {
@@ -29,5 +28,9 @@ public class ContactServices {
 	
 	public void delete(String id) {
 		dao.delete(id);
+	}
+	
+	public void createContact(Contact contact) {
+		dao.createContact(contact);
 	}
 }

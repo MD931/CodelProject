@@ -23,8 +23,6 @@
 		<many-to-one class="Address" name="add" column="id_address"
 			unique="true" lazy="false" cascade="persist" optimistic-lock="false" />
 			
-		<many-to-one name="user" class="UserAccount" column="id_user"
-			not-null="true" />	
 
 		<set name="books" table="contact_contactgroup" lazy="false">
 			<key column="id_contact" />

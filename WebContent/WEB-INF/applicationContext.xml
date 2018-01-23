@@ -28,17 +28,11 @@
 		<property name="country"><value>France</value></property>
 	</bean>
 	
-	<bean id="user1" class="entities.UserAccount" scope="prototype">
-		<property name="username"><value>jskjsk</value></property>
-		<property name="password"><value>jskjsk</value></property>
-	</bean>
-	
 	<bean id="contact1" class="entities.Contact" scope="prototype">
 		<property name="firstName"><value>Alain</value></property>
 		<property name="lastName"><value>Dupont</value></property>
 		<property name="email"><value>alain.dupont@dupont.fr</value></property>
 		<property name="add" ref="address1" />
-		<property name="user" ref="user1" />
 	</bean>
 	
 	
@@ -47,7 +41,6 @@
 		<constructor-arg ><value>Doe</value></constructor-arg>
 		<constructor-arg ><value>john.doe@doe.fr</value></constructor-arg>		
 		<property name="add" ref="address2" />
-		<property name="user" ref="user1" />
 	</bean>
 	
 
