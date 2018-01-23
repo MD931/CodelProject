@@ -12,7 +12,7 @@
 <a href="./searchContact.jsp">READ</a>
 <a href="./updateContact.jsp">UPDATE</a>
 <a href="./removeContact.jsp">DELETE</a>
-
+<%= session.getAttribute("currentUser") %>
 </body>
 <script src="js/bootstrap/bootstrap.min.js"></script>
 </html>

@@ -24,7 +24,7 @@
   <input id='pwConfirm' 	name='passwordConfirm' 	placeholder='Confirm password' 	type='password' >
   
   <div class='agree'>
-    <input id='agree' name='agree' type='checkbox'>
+  		<input id='agree' name='agree' type='checkbox'>
     <label for='agree'></label>Accept rules and conditions
   </div>
   <input class='animated' type='submit' value='Register' id='register'>
@@ -35,7 +35,7 @@
 </div>
   
   	<script type="text/javascript" src="js/jquery/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/register.js"></script>
+    <script type="text/javascript" src="js/other/register.js"></script>
 
 </body>
 </body>

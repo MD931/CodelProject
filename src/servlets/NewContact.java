@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import entities.UserAccount;
 import services.ContactServices;
-import services.UserServices;
 
 /**
  * Servlet implementation class CreateContactServlet
@@ -29,7 +29,8 @@ public class NewContact extends HttpServlet {
 		ApplicationContext context =
 				WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		ContactServices cs = (ContactServices) context.getBean("contactServices");
-		cs.create(id, name, phone, email, UserServices.read(Long.parseLong("1")));
+		UserAccount user = (UserAccount)request.getSession(false).getAttribute("currentUser");
+		cs.create(id, name, phone, email, user);
 	}
 
 }

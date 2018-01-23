@@ -25,8 +25,10 @@
   <input class='animated' type='submit' value='Login'>
   <a class='forgot' href='register.jsp'>Not registred yet?</a>
   </form>
+    <div id='error' style="text-align : center; font-style:bold; color : red;">
+   <%= request.getAttribute("erreur")==null?"":request.getAttribute("erreur") %>		
+  </div>
 </div>
-  
 
 </body>
 </body>
