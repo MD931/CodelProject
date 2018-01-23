@@ -19,7 +19,7 @@ if(request.getParameter("id")==null){
 	out.print("<b><font color=\"red\">Unknown id...</font></b><br><br>");
 }
 Long id = Long.parseLong(request.getParameter("id"));
-Contact contact = ContactServices.read(id);
+Contact contact = new Contact(); //ContactServices.read(id);
 %>
 <form action="./updateContact?id=<%=contact.getId()%>" method="POST">
 	Id :<input type="text" name="id" /><br />

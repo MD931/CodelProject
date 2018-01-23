@@ -28,7 +28,7 @@ public class SearchContact extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Long id= new Long(request.getParameter("id"));
-		ContactServices.read(id);
+		//ContactServices.read(id);
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class SearchContact extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Long id= new Long(request.getParameter("id"));
-		ContactServices.read(id);
+		//ContactServices.read(id);
 	}
 
 }

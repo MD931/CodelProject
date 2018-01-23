@@ -19,7 +19,7 @@ public class UpdateContact extends HttpServlet {
 		String name = request.getParameter("firstName");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
-		ContactServices.update(Long.parseLong(id), name, phone, email);
+		//ContactServices.update(Long.parseLong(id), name, phone, email);
 	}
 
 }

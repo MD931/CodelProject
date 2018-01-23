@@ -1,13 +1,15 @@
 package daos;
 
 import org.hibernate.Session;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import daos.interfaces.IDAOContact;
 import entities.Address;
 import entities.Contact;
 import entities.UserAccount;
 import util.HibernateUtil;
 
-public class DAOContact {
+public class DAOContact extends HibernateDaoSupport  implements IDAOContact{
 	
 	public void create(String id, String name, String phone, String email, UserAccount user) {
 		System.out.println("Create "+id+", "+name+", "+phone+", "+email);

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="daoContact" class="daos.DAOContact" scope="singleton" />
+	
+	<bean id="contactServices" class="services.ContactServices" scope="singleton" >
+		<property name="dao" ref="daoContact"/>
+	</bean>
+
+	
+	<bean id="address1" class="entities.Address" scope="prototype">
+		<property name="street"><value>4 rue jussieu</value></property>
+		<property name="city"><value>Paris</value></property>
+		<property name="zip"><value>75005</value></property>
+		<property name="country"><value>France</value></property>
+	</bean>
+	
+	<bean id="address2" class="entities.Address" scope="prototype">
+		<property name="street"><value>6 rue jussieu</value></property>
+		<property name="city"><value>Paris</value></property>
+		<property name="zip"><value>75006</value></property>
+		<property name="country"><value>France</value></property>
+	</bean>
+	
+	<bean id="user1" class="entities.UserAccount" scope="prototype">
+		<property name="username"><value>jskjsk</value></property>
+		<property name="password"><value>jskjsk</value></property>
+	</bean>
+	
+	<bean id="contact1" class="entities.Contact" scope="prototype">
+		<property name="firstName"><value>Alain</value></property>
+		<property name="lastName"><value>Dupont</value></property>
+		<property name="email"><value>alain.dupont@dupont.fr</value></property>
+		<property name="add" ref="address1" />
+		<property name="user" ref="user1" />
+	</bean>
+	
+	
+	<bean id="contact2" class="entities.Contact">
+		<constructor-arg type="String"><value>John</value></constructor-arg>
+		<constructor-arg type="String"><value>Doe</value></constructor-arg>
+		<constructor-arg type="String"><value>john.doe@doe.fr</value></constructor-arg>		
+		<property name="add" ref="address2" />
+		<property name="user" ref="user1" />
+	</bean>
+	
+
+
+</beans>
