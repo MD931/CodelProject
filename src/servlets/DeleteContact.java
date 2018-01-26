@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import services.ContactServices;
 
 /**
@@ -14,9 +17,12 @@ import services.ContactServices;
 public class DeleteContact extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id  = request.getParameter("id");
-		//ContactServices.delete(id);
+		ApplicationContext context =
+				WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ContactServices cs = (ContactServices) context.getBean("contactServices");
+		cs.delete(Long.parseLong(id));
 	}
 
 }

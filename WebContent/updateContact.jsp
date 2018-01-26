@@ -14,7 +14,7 @@
 </head>
 <body>
 <%
-Contact contact = (Contact) request.getAttribute("contact");
+Contact contact = (Contact) request.getSession().getAttribute("contact");
 %>
 <form action="updateContact?id=<%=contact.getId()%>" method="POST">
 	Firstname :<input type="text" name="firstname" value="<%=contact.getFirstName()%>"/><br />

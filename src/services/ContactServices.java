@@ -1,8 +1,11 @@
 package services;
 
+import org.hibernate.StaleObjectStateException;
+
 import daos.interfaces.IDAOContact;
 import entities.Address;
 import entities.Contact;
+import util.ResponseTools;
 
 public class ContactServices {
 	
@@ -23,26 +26,35 @@ public class ContactServices {
 	public Contact read(Long id) {
 		return dao.read(id);
 	}
-	public Contact load(Long id) {
-		return dao.load(id);
-
-	}
 	
-	public void update(Long id, String firstName, String lastName, String email
+	public int update(Contact c, Long id, String firstName, String lastName, String email
 			, String street, String city, String zip, String country) {
-		Contact c = load(id);
-		c.setFirstName(firstName);
-		c.setLastName(lastName);
-		c.setEmail(email);
-		c.getAdd().setStreet(street);
-		c.getAdd().setCity(city);
-		c.getAdd().setZip(zip);
-		c.getAdd().setCountry(country);
-		dao.update(c);
+		try {
+			c.setFirstName(firstName);
+			c.setLastName(lastName);
+			c.setEmail(email);
+			c.getAdd().setStreet(street);
+			c.getAdd().setCity(city);
+			c.getAdd().setZip(zip);
+			c.getAdd().setCountry(country);
+			dao.update(c);
+			return ResponseTools.SUCCESS;
+		} catch (StaleObjectStateException e) {
+			return ResponseTools.VERSION_ERROR;
+		} catch (Exception e) {
+			return ResponseTools.MAIN_ERROR;
+		}
 	}
 	
-	public void delete(Long id) {
-		dao.delete(id);
+	public int delete(Long id) {
+		try{
+			dao.delete(id);
+			return ResponseTools.SUCCESS;
+		}catch(IllegalArgumentException e) {
+			return ResponseTools.NOT_EXIST;
+		}catch (Exception e) {
+			return ResponseTools.MAIN_ERROR;
+		}
 	}
 	
 	

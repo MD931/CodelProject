@@ -1,5 +1,8 @@
 package daos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import daos.interfaces.IDAOContact;
@@ -26,6 +29,15 @@ public class DAOContact extends HibernateDaoSupport implements IDAOContact{
 	}
 	public Contact load(Long id) {
 		return (Contact) getHibernateTemplate().load(Contact.class, id);
+	}
+
+	public List<Contact> getContactsBylastName(String lastName) {
+		return (List<Contact>)getHibernateTemplate().find("from Contact c where c.lastName=?",lastName);
+	}
+
+	public List<Contact> getContactsByfirstName(String firstName) {
+		return (List<Contact>)getHibernateTemplate().find("from Contact c where c.firstName=?",firstName);
+
 	}
 
 }
