@@ -21,7 +21,7 @@
 		<property name="email" />
 
 		<many-to-one class="Address" name="add" column="id_address"
-			unique="true" lazy="false" cascade="persist" optimistic-lock="false" />
+			unique="true" lazy="false" cascade="all" optimistic-lock="false" />
 			
 
 		<set name="books" table="contact_contactgroup" lazy="false">

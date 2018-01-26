@@ -14,17 +14,16 @@
 </head>
 <body>
 <%
-if(request.getParameter("id")==null){
-	out.print("<b><font color=\"red\">Unknown id...</font></b><br><br>");
-}
-Long id = Long.parseLong(request.getParameter("id"));
-Contact contact = new Contact(); //ContactServices.read(id);
+Contact contact = (Contact) request.getAttribute("contact");
 %>
-<form action="./updateContact?id=<%=contact.getId()%>" method="POST">
-	Id :<input type="text" name="id" /><br />
-	Firstname :<input type="text" name="firstName" value="<%=contact.getFirstName()%>"/><br />
-	Lastname :<input type="text" name="phone" value="<%=contact.getLastName()%>"/><br />
+<form action="updateContact?id=<%=contact.getId()%>" method="POST">
+	Firstname :<input type="text" name="firstname" value="<%=contact.getFirstName()%>"/><br />
+	Lastname :<input type="text" name="lastname" value="<%=contact.getLastName()%>"/><br />
 	Email : <input type="text" name="email" value="<%=contact.getEmail()%>"/><br />
+	Street : <input type="text" name="street" value="<%=contact.getAdd().getStreet()%>"/><br />
+	City : <input type="text" name="city" value="<%=contact.getAdd().getCity()%>"/><br />
+	Zip : <input type="text" name="zip" value="<%=contact.getAdd().getZip()%>"/><br />
+	Country : <input type="text" name="country" value="<%=contact.getAdd().getCountry()%>"/><br />
 	<input type="submit" value="Update" />
 </form>
 </body>

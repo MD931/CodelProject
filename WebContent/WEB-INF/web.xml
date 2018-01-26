@@ -73,12 +73,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>FakeContact</display-name>
-    <servlet-name>FakeContact</servlet-name>
-    <servlet-class>servlets.FakeContact</servlet-class>
+    <display-name>Peupler</display-name>
+    <servlet-name>Peupler</servlet-name>
+    <servlet-class>servlets.Peupler</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>FakeContact</servlet-name>
-    <url-pattern>/fakeContact</url-pattern>
+    <servlet-name>Peupler</servlet-name>
+    <url-pattern>/peupler</url-pattern>
   </servlet-mapping>
 </web-app>

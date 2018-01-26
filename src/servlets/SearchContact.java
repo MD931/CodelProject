@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import services.ContactServices;
 
 /**
@@ -29,6 +32,10 @@ public class SearchContact extends HttpServlet {
 		// TODO Auto-generated method stub
 		Long id= new Long(request.getParameter("id"));
 		//ContactServices.read(id);
+		ApplicationContext context =
+				WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ContactServices cs = (ContactServices) context.getBean("contactServices");
+		response.getWriter().println(cs.read(id));
 	}
 
 	/**

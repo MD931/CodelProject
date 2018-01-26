@@ -8,10 +8,15 @@
 </head>
 <body>
 <form action="./newContact" method="POST">
-	Id :<input type="text" name="id" /><br />
 	Name :<input type="text" name="name" /><br />
 	Phone :<input type="text" name="phone" /><br />
 	Email : <input type="text" name="email" /><br />
+	
+	Street : <input type="text" name="street" /><br />
+	City : <input type="text" name="city" /><br />
+	Zip : <input type="text" name="zip" /><br />
+	Country : <input type="text" name="country" /><br />
+	
 	<input type="submit" value="Create" />
 </form>
 </body>

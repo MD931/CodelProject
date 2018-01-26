@@ -16,13 +16,13 @@ import services.ContactServices;
 /**
  * Servlet implementation class FakeContact
  */
-public class FakeContact extends HttpServlet {
+public class Peupler extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FakeContact() {
+    public Peupler() {
         super();
         // TODO Auto-generated constructor stub
     }

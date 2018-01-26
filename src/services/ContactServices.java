@@ -1,12 +1,12 @@
 package services;
 
-import daos.DAOContact;
 import daos.interfaces.IDAOContact;
+import entities.Address;
 import entities.Contact;
 
 public class ContactServices {
 	
-	private IDAOContact dao = new DAOContact();
+	private IDAOContact dao;
 	
 	public ContactServices() {}
 	
@@ -14,23 +14,36 @@ public class ContactServices {
 		this.dao = dao;
 	}
 	
-	public void create(String id, String name, String phone, String email) {
-		dao.create(id, name, phone, email);
+	public void create(String name, String phone, String email, Address address) {
+		Contact c = new Contact(name, phone, email);
+		c.setAdd(address);
+		dao.create(c);
 	}
 	
 	public Contact read(Long id) {
 		return dao.read(id);
 	}
-	
-	public void update(Long id, String firstName, String lastName, String email) {
-		dao.update(id, firstName, lastName, email);
+	public Contact load(Long id) {
+		return dao.load(id);
+
 	}
 	
-	public void delete(String id) {
+	public void update(Long id, String firstName, String lastName, String email
+			, String street, String city, String zip, String country) {
+		Contact c = load(id);
+		c.setFirstName(firstName);
+		c.setLastName(lastName);
+		c.setEmail(email);
+		c.getAdd().setStreet(street);
+		c.getAdd().setCity(city);
+		c.getAdd().setZip(zip);
+		c.getAdd().setCountry(country);
+		dao.update(c);
+	}
+	
+	public void delete(Long id) {
 		dao.delete(id);
 	}
 	
-	public void createContact(Contact contact) {
-		dao.createContact(contact);
-	}
+	
 }

@@ -8,7 +8,7 @@
 <title>MAIN</title>
 </head>
 <body>
-<form action="./fakeContact" method="post">
+<form action="./peupler" method="post">
 	<input type="submit" value="Peupler" />
 </form>
 </body>
