@@ -41,21 +41,15 @@ public class EntrepriseServices {
 		return null;
 	}
 	
-	public int update(Contact c, Long id, String firstName, String lastName, String email
-			, String street, String city, String zip, String country) {
+	public int update(Entreprise entreprise, Integer numSiret) {
 		try {
-			c.setFirstName(firstName);
-			c.setLastName(lastName);
-			c.setEmail(email);
-			c.getAdd().setStreet(street);
-			c.getAdd().setCity(city);
-			c.getAdd().setZip(zip);
-			c.getAdd().setCountry(country);
-			//dao.update(c);
+			entreprise.setNumSiret(numSiret);
+			dao.update(entreprise);
 			return ResponseTools.SUCCESS;
 		} catch (StaleObjectStateException e) {
 			return ResponseTools.VERSION_ERROR;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return ResponseTools.MAIN_ERROR;
 		}
 	}

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+	<title>Edit Contact</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Firstname : " for="fname"></h:outputLabel>
+			<h:inputText value="#{editContact.contact.firstName}" id="fname"
+				label="Firstname"></h:inputText>
+			<h:message for="fname" style="color: red"></h:message>
+
+
+			<h:outputLabel value="Lastname : " for="lname"></h:outputLabel>
+			<h:inputText value="#{editContact.contact.lastName}" id="lname"
+				label="Lastname"></h:inputText>
+			<h:message for="lname" style="color: red"></h:message>
+
+			<h:outputLabel value="Email : " for="email"></h:outputLabel>
+			<h:inputText value="#{editContact.contact.email}" id="email"
+				label="Email"></h:inputText>
+			<h:message for="email" style="color: red"></h:message>
+
+			<h:outputLabel value="Street : " for="street"></h:outputLabel>
+			<h:inputText value="#{editContact.contact.add.street}" id="street"
+				label="Street"></h:inputText>
+			<h:message for="street" style="color: red"></h:message>
+
+			<h:outputLabel value="City : " for="city"></h:outputLabel>
+			<h:inputText value="#{editContact.contact.add.city}" id="city"
+				label="City"></h:inputText>
+			<h:message for="city" style="color: red"></h:message>
+
+			<h:outputLabel value="Zip : " for="zip"></h:outputLabel>
+			<h:inputText value="#{editContact.contact.add.zip}" id="zip"
+				label="Zip"></h:inputText>
+			<h:message for="zip" style="color: red"></h:message>
+
+			<h:outputLabel value="Country : " for="country"></h:outputLabel>
+			<h:inputText value="#{editContact.contact.add.country}" id="country"
+				label="Country"></h:inputText>
+			<h:message for="country" style="color: red"></h:message>
+			<h:panelGroup rendered="#{not empty editContact.numSiret}">
+				<tr>
+					<td colspan="2"><label>SIRET:</label> <h:inputText
+							name="numSiret" label="NumSiret" value="#{editContact.numSiret}">
+							<f:convertNumber integerOnly="true" type="number" />
+						</h:inputText></td>
+				</tr>
+			</h:panelGroup>
+			<h:selectManyListbox value="#{editContact.selectedGroupsId}"
+				converter="javax.faces.Long">
+				<f:selectItems value="#{editContact.allGroups}" var="f"
+					itemLabel="#{f.groupName}" itemValue="#{f.groupId}" />
+			</h:selectManyListbox>
+			<h:dataTable value="#{editContact.profiles}" var="phone">
+				<h:column>Type : <h:inputText value="#{phone.phoneKind}" />
+				</h:column>
+				<h:column>Numéro : <h:inputText
+						value="#{phone.phoneNumber}" />
+				</h:column>
+				<h:column>
+					<h:commandButton value="remove"
+						action="#{editContact.remove(phone)}" />
+				</h:column>
+			</h:dataTable>
+			<h:commandButton value="Add Phone" action="#{editContact.add}" />
+			<br />
+		</h:panelGrid>
+		<h:commandButton value="Edit" action="#{editContact.edit}" />
+		<h:commandButton value="Reset" type="reset" />
+
+	</h:form>
+</h:body>
+</html>

@@ -17,7 +17,7 @@ public class DAOEntreprise extends HibernateDaoSupport implements IDAOEntreprise
 	}
 
 	public void update(Entreprise entity) {
-		// TODO Auto-generated method stub
+		getHibernateTemplate().merge(entity);
 		
 	}
 

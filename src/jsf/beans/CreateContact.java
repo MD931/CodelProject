@@ -156,24 +156,24 @@ public class CreateContact implements Serializable{
 		}
 		if(lastname.isEmpty()) {
 			error = true;
-			context.addMessage("lname", new FacesMessage("champ obligatoire !"));
+			context.addMessage("lname", new FacesMessage("champ last obligatoire !"));
 		}
-		if(email.isEmpty() || email.matches("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")) {
+		if(email.isEmpty() || !email.matches("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")) {
 			error = true;
-			context.addMessage("email", new FacesMessage("champ obligatoire !"));
+			context.addMessage("email", new FacesMessage("champ email obligatoire !"));
 		}
 		if(street.isEmpty()) {
 			error = true;
-			context.addMessage("street", new FacesMessage("champ obligatoire !"));
+			context.addMessage("street", new FacesMessage("champ street obligatoire !"));
 		}
 		if(city.isEmpty()) {
 			error = true;
-			context.addMessage("city", new FacesMessage("champ obligatoire !"));
+			context.addMessage("city", new FacesMessage("champ city obligatoire !"));
 
 		}
 		if(country.isEmpty()) {
 			error = true;
-			context.addMessage("country", new FacesMessage("champ obligatoire !"));
+			context.addMessage("country", new FacesMessage("champ country obligatoire !"));
 
 		}
 		if(!zip.matches("^[0-9]{5}$")) {
