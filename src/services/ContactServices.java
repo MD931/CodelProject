@@ -41,7 +41,7 @@ public class ContactServices {
 		return dao.read(id);
 	}
 
-	public int update(Contact c, Long id, String firstName, String lastName, String email
+	public int update(Contact c, String firstName, String lastName, String email
 			, String street, String city, String zip, String country) {
 		try {
 			c.setFirstName(firstName);

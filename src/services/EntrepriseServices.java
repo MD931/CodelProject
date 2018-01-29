@@ -41,8 +41,16 @@ public class EntrepriseServices {
 		return null;
 	}
 	
-	public int update(Entreprise entreprise, Integer numSiret) {
+	public int update(Entreprise entreprise, String firstName, String lastName, String email
+			,String street, String city, String zip, String country, Integer numSiret) {
 		try {
+			entreprise.setFirstName(firstName);
+			entreprise.setLastName(lastName);
+			entreprise.setEmail(email);
+			entreprise.getAdd().setStreet(street);
+			entreprise.getAdd().setCity(city);
+			entreprise.getAdd().setZip(zip);
+			entreprise.getAdd().setCountry(country);
 			entreprise.setNumSiret(numSiret);
 			dao.update(entreprise);
 			return ResponseTools.SUCCESS;

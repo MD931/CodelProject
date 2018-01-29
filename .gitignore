@@ -22,7 +22,6 @@
 hs_err_pid*
 
 .classpath
-*.cfg.xml
 
 /bin/
 .settings/
