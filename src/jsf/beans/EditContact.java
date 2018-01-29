@@ -29,7 +29,8 @@ import util.ResponseTools;
 @ManagedBean(name="editContact")
 @ViewScoped
 public class EditContact implements Serializable{
-	Long id;
+	
+	
 	String firstname;
 	String lastname;
 	String email;
@@ -37,6 +38,7 @@ public class EditContact implements Serializable{
 	String city;
 	String zip;
 	String country;
+	Long id;
 	Integer numSiret;
 	List<PhoneNumber> phones;
 	List<ContactGroup> allGroups;
@@ -64,23 +66,28 @@ public class EditContact implements Serializable{
 		es = (EntrepriseServices) context.getBean("entrepriseServices");
 		ps = (PhoneNumberServices) context.getBean("phoneNumberServices");
 		allGroups = cgs.getAllContactGroup();
+		
+		
+		/* INIT */
 		contact = cs.read(id);
+		firstname = contact.getFirstName();
+		lastname = contact.getLastName();
+		email = contact.getEmail();
+		street = contact.getAdd().getStreet();
+		city = contact.getAdd().getCity();
+		zip = contact.getAdd().getZip();
+		country = contact.getAdd().getCountry();
 		if(contact instanceof Entreprise) {
 			System.out.println("Entreprise "+((Entreprise) contact).getNumSiret());
 			numSiret = ((Entreprise) contact).getNumSiret();
 		}
-		contact.getProfiles().forEach(phone ->{
-			System.out.println(phone.getPhoneKind()+" "+phone.getPhoneNumber());
-		});
-
 		selectedGroupsId = new ArrayList<Long>();
 
 		contact.getBooks().forEach(book ->{
 			selectedGroupsId.add(book.getGroupId());
 		});
-
 		profiles = new ArrayList<PhoneNumber>(contact.getProfiles());
-		System.out.println(allGroups);
+		/* INIT */
 	}
 
 	public List<PhoneNumber> getProfiles() {
@@ -124,47 +131,62 @@ public class EditContact implements Serializable{
 	public void setSelectedGroupsId(List<Long> selectedGroupsId) {
 		this.selectedGroupsId = selectedGroupsId;
 	}
+	
+
 
 
 	public String getFirstname() {
 		return firstname;
 	}
+
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
+
 	public String getLastname() {
 		return lastname;
 	}
+
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getStreet() {
 		return street;
 	}
+
 	public void setStreet(String street) {
 		this.street = street;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getZip() {
 		return zip;
 	}
+
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
+
 	public String getCountry() {
 		return country;
 	}
+
 	public void setCountry(String country) {
 		this.country = country;
 	}
@@ -196,7 +218,7 @@ public class EditContact implements Serializable{
 	}
 
 	public void remove(PhoneNumber phone) {
-		ps.delete(phone.getId());
+		ps.delete(phone);
 		profiles.remove(phone);
 		contact.getProfiles().remove(phone);
 	}
@@ -232,10 +254,20 @@ public class EditContact implements Serializable{
 				}
 			}
 		}else {
-			cs.update(contact, firstname, lastname, email, street, city, zip, country);
+			int result = cs.update(contact, firstname, lastname, email, street, city, zip, country);
+			if(result == ResponseTools.SUCCESS) {
+				context.addMessage("success", new FacesMessage("Modification effectuée avec succès"));
+			}else if(result == ResponseTools.VERSION_ERROR) {
+				context.addMessage("error", new FacesMessage("Version erreur"));
+			}else {
+				context.addMessage("error", new FacesMessage("Echec de modification"));
+			}
 		}
 	}
 
+	public void loadData() {
+		System.out.println("loadData");
+	}
 
 
 

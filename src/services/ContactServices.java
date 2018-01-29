@@ -60,9 +60,9 @@ public class ContactServices {
 		}
 	}
 
-	public int delete(Long id) {
+	public int delete(Contact entity) {
 		try{
-			dao.delete(id);
+			dao.delete(entity);
 			return ResponseTools.SUCCESS;
 		}catch(IllegalArgumentException e) {
 			return ResponseTools.NOT_EXIST;

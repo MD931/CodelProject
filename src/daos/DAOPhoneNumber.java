@@ -21,9 +21,8 @@ public class DAOPhoneNumber extends HibernateDaoSupport implements IDAOPhoneNumb
 		
 	}
 
-	public void delete(Long id) {
-		PhoneNumber pn = read(id);
-		getHibernateTemplate().delete(pn);
+	public void delete(PhoneNumber entity) {
+		getHibernateTemplate().delete(entity);
 		
 	}
 

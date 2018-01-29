@@ -14,38 +14,34 @@
 	<h:form>
 		<h:panelGrid columns="3">
 			<h:outputLabel value="Firstname : " for="fname"></h:outputLabel>
-			<h:inputText value="#{editContact.contact.firstName}" id="fname"
+			<h:inputText value="#{editContact.firstname}" id="fname"
 				label="Firstname"></h:inputText>
 			<h:message for="fname" style="color: red"></h:message>
 
 
 			<h:outputLabel value="Lastname : " for="lname"></h:outputLabel>
-			<h:inputText value="#{editContact.contact.lastName}" id="lname"
+			<h:inputText value="#{editContact.lastname}" id="lname"
 				label="Lastname"></h:inputText>
 			<h:message for="lname" style="color: red"></h:message>
 
 			<h:outputLabel value="Email : " for="email"></h:outputLabel>
-			<h:inputText value="#{editContact.contact.email}" id="email"
-				label="Email"></h:inputText>
+			<h:inputText value="#{editContact.email}" id="email" label="Email"></h:inputText>
 			<h:message for="email" style="color: red"></h:message>
 
 			<h:outputLabel value="Street : " for="street"></h:outputLabel>
-			<h:inputText value="#{editContact.contact.add.street}" id="street"
-				label="Street"></h:inputText>
+			<h:inputText value="#{editContact.street}" id="street" label="Street"></h:inputText>
 			<h:message for="street" style="color: red"></h:message>
 
 			<h:outputLabel value="City : " for="city"></h:outputLabel>
-			<h:inputText value="#{editContact.contact.add.city}" id="city"
-				label="City"></h:inputText>
+			<h:inputText value="#{editContact.city}" id="city" label="City"></h:inputText>
 			<h:message for="city" style="color: red"></h:message>
 
 			<h:outputLabel value="Zip : " for="zip"></h:outputLabel>
-			<h:inputText value="#{editContact.contact.add.zip}" id="zip"
-				label="Zip"></h:inputText>
+			<h:inputText value="#{editContact.zip}" id="zip" label="Zip"></h:inputText>
 			<h:message for="zip" style="color: red"></h:message>
 
 			<h:outputLabel value="Country : " for="country"></h:outputLabel>
-			<h:inputText value="#{editContact.contact.add.country}" id="country"
+			<h:inputText value="#{editContact.country}" id="country"
 				label="Country"></h:inputText>
 			<h:message for="country" style="color: red"></h:message>
 			<h:panelGroup rendered="#{not empty editContact.numSiret}">

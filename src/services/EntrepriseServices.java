@@ -62,9 +62,9 @@ public class EntrepriseServices {
 		}
 	}
 	
-	public int delete(Long id) {
+	public int delete(Entreprise entity) {
 		try{
-			dao.delete(id);
+			dao.delete(entity);
 			return ResponseTools.SUCCESS;
 		}catch(IllegalArgumentException e) {
 			return ResponseTools.NOT_EXIST;

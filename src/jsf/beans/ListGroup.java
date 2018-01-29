@@ -36,7 +36,7 @@ public class ListGroup implements Serializable{
 	}
 
 	public void supprimerGroup() {
-		if(cgs.delete(selectedGroup.getGroupId()) == ResponseTools.SUCCESS) {
+		if(cgs.delete(selectedGroup) == ResponseTools.SUCCESS) {
 			contactGroups.remove(selectedGroup);
 		}else {
 			FacesContext context = FacesContext.getCurrentInstance();

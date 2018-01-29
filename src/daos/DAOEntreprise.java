@@ -3,6 +3,7 @@ package daos;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import daos.interfaces.IDAOEntreprise;
+import entities.Contact;
 import entities.Entreprise;
 
 public class DAOEntreprise extends HibernateDaoSupport implements IDAOEntreprise {
@@ -12,8 +13,7 @@ public class DAOEntreprise extends HibernateDaoSupport implements IDAOEntreprise
 	}
 
 	public Entreprise read(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Entreprise) getHibernateTemplate().get(Entreprise.class, id);
 	}
 
 	public void update(Entreprise entity) {
@@ -21,9 +21,8 @@ public class DAOEntreprise extends HibernateDaoSupport implements IDAOEntreprise
 		
 	}
 
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Entreprise entreprise) {
+		getHibernateTemplate().delete(entreprise);
 	}
 
 }

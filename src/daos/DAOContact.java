@@ -24,9 +24,8 @@ public class DAOContact extends HibernateDaoSupport implements IDAOContact{
 		getHibernateTemplate().merge(entity);
 	}
 
-	public void delete(Long id) {
-		Contact c = read(id);
-		getHibernateTemplate().delete(c);
+	public void delete(Contact entity) {
+		getHibernateTemplate().delete(entity);
 	}
 
 	public List<Contact> getContactsBylastName(String lastName) {

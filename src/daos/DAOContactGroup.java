@@ -24,9 +24,8 @@ public class DAOContactGroup extends HibernateDaoSupport implements IDAOContactG
 		
 	}
 
-	public void delete(Long id) {
-		ContactGroup c = read(id);
-		getHibernateTemplate().delete(c);
+	public void delete(ContactGroup entity) {
+		getHibernateTemplate().delete(entity);
 	}
 
 	@Override

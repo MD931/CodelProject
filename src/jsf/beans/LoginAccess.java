@@ -32,7 +32,7 @@ public class LoginAccess implements Serializable {
 			context.addMessage(null, new FacesMessage("Un des champs est vide"));
 			return null;
 		}else if(login.equals(password)) {
-			return ("main");
+			return ("main?faces-redirect=true");
 		}else {
 			context.addMessage(null, new FacesMessage("Mauvais login"));
 			return null;

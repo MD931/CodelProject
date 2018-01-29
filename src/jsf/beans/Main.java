@@ -40,7 +40,7 @@ public class Main implements Serializable{
 	}
 	
 	public void supprimerContact() {
-		if(cs.delete(selectedContact.getId()) == ResponseTools.SUCCESS) {
+		if(cs.delete(selectedContact) == ResponseTools.SUCCESS) {
 			contacts.remove(selectedContact);
 		}else {
 			FacesContext context = FacesContext.getCurrentInstance();

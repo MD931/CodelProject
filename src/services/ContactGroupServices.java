@@ -37,9 +37,9 @@ public class ContactGroupServices {
 			return ResponseTools.MAIN_ERROR;
 		}
 	}
-	public int delete(Long id) {
+	public int delete(ContactGroup entity) {
 		try{
-			dao.delete(id);
+			dao.delete(entity);
 			return ResponseTools.SUCCESS;
 		}catch(IllegalArgumentException e) {
 			return ResponseTools.NOT_EXIST;

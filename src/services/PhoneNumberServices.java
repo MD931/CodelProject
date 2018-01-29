@@ -13,7 +13,7 @@ public class PhoneNumberServices {
 		this.dao = dao;
 	}
 	
-	public void delete(Long id) {
-		dao.delete(id);
+	public void delete(PhoneNumber entity) {
+		dao.delete(entity);
 	}
 }
