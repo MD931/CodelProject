@@ -1,8 +1,9 @@
 package daos;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import daos.interfaces.IDAOContact;
@@ -27,9 +28,6 @@ public class DAOContact extends HibernateDaoSupport implements IDAOContact{
 		Contact c = read(id);
 		getHibernateTemplate().delete(c);
 	}
-	public Contact load(Long id) {
-		return (Contact) getHibernateTemplate().load(Contact.class, id);
-	}
 
 	public List<Contact> getContactsBylastName(String lastName) {
 		return (List<Contact>)getHibernateTemplate().find("from Contact c where c.lastName=?",lastName);
@@ -38,6 +36,11 @@ public class DAOContact extends HibernateDaoSupport implements IDAOContact{
 	public List<Contact> getContactsByfirstName(String firstName) {
 		return (List<Contact>)getHibernateTemplate().find("from Contact c where c.firstName=?",firstName);
 
+	}
+	
+	public List<Contact> getAllContacts(int firstResult, int maxResults){
+		DetachedCriteria criteria = DetachedCriteria.forClass(Contact.class);
+		return (List<Contact>)getHibernateTemplate().findByCriteria(criteria, firstResult, maxResults);
 	}
 
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+	
+	<title>Main Page</title>
+</h:head>
+<h:body>
+<h:form>
+	<h:dataTable value="#{main.contacts}" var="contact"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    		>
+
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">FirstName</f:facet>
+    				<!-- row record -->
+    				#{contact.firstName}
+    			</h:column>
+
+    			<h:column>
+    				<f:facet name="header">LastName</f:facet>
+    				#{contact.lastName}
+    			</h:column>
+
+    			<h:column>
+    				<f:facet name="header">Email</f:facet>
+    				#{contact.email}
+    			</h:column>
+    			
+    			<h:column>
+    				<h:commandLink onclick="if (! confirm('Really want to do that?')) return false"  class="edit_icon" action="#{main.supprimerContact}" value="Supprimer">
+    					<f:setPropertyActionListener value="#{contact}" target="#{main.selectedContact}" />
+    				</h:commandLink>
+    			</h:column>
+    			
+    			<h:column>
+    				<span class="glyphicon glyphicon-align-left"></span>
+    			</h:column>
+    			
+    			<h:column>
+    				<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+    			</h:column>
+    		</h:dataTable>
+    		</h:form>
+</h:body>
+</html>

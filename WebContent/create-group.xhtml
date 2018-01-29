@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+
+	<title>Create Group</title>
+</h:head>
+<h:body>
+	<h:form>
+	<h:panelGrid columns="3">
+	        <h:outputLabel value="Group name : " for="ngroup"></h:outputLabel>
+            <h:inputText value="#{createGroup.groupName}" id="ngroup" label="Group name"></h:inputText>
+            <h:message for="ngroup" style="color: red"></h:message>
+	</h:panelGrid>
+	    <h:commandButton value="Create" action="#{createGroup.create}" />
+		<h:commandButton value="Reset" type="reset"/>
+
+	 </h:form>
+</h:body>
+</html>

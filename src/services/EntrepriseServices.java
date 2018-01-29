@@ -1,46 +1,46 @@
 package services;
 
-import java.util.List;
 import java.util.Set;
 
 import org.hibernate.StaleObjectStateException;
 
-import daos.interfaces.IDAOContact;
+import daos.interfaces.IDAOEntreprise;
 import entities.Address;
 import entities.Contact;
 import entities.ContactGroup;
+import entities.Entreprise;
 import entities.PhoneNumber;
 import util.ResponseTools;
 
-public class ContactServices {
-
-	private IDAOContact dao;
-
-	public ContactServices() {}
-
-	public ContactServices(IDAOContact dao) {
+public class EntrepriseServices {
+	private IDAOEntreprise dao;
+	
+	public EntrepriseServices() {}
+	
+	public EntrepriseServices(IDAOEntreprise dao) {
 		this.dao = dao;
 	}
-
+	
 	public void create(String firstname, String lastname, String email, Address address, 
-			Set<PhoneNumber> phones, Set<ContactGroup> books) {
-		Contact c = new Contact(firstname, lastname, email);
-		c.setAdd(address);
-		c.setProfiles(phones);
-		c.setBooks(books);
+			Set<PhoneNumber> phones, Set<ContactGroup> books, Integer numSiret) {
+		Entreprise e = new Entreprise(firstname, lastname, email, numSiret);
+		e.setAdd(address);
+		e.setProfiles(phones);
+		e.setBooks(books);
 		phones.forEach(phone ->{
-			phone.setContact(c);
+			phone.setContact(e);
 		});
 		books.forEach(book ->{
-			book.addContact(c);
+			book.addContact(e);
 		});
-		dao.create(c);
-	}
+		dao.create(e);
 
-	public Contact read(Long id) {
-		return dao.read(id);
 	}
-
+	
+	public Entreprise read(Long id) {
+		return null;
+	}
+	
 	public int update(Contact c, Long id, String firstName, String lastName, String email
 			, String street, String city, String zip, String country) {
 		try {
@@ -51,7 +51,7 @@ public class ContactServices {
 			c.getAdd().setCity(city);
 			c.getAdd().setZip(zip);
 			c.getAdd().setCountry(country);
-			dao.update(c);
+			//dao.update(c);
 			return ResponseTools.SUCCESS;
 		} catch (StaleObjectStateException e) {
 			return ResponseTools.VERSION_ERROR;
@@ -59,7 +59,7 @@ public class ContactServices {
 			return ResponseTools.MAIN_ERROR;
 		}
 	}
-
+	
 	public int delete(Long id) {
 		try{
 			dao.delete(id);
@@ -70,11 +70,4 @@ public class ContactServices {
 			return ResponseTools.MAIN_ERROR;
 		}
 	}
-
-	public List<Contact> getAllContacts(int firstResult, int maxResults){
-		return dao.getAllContacts(firstResult, maxResults);
-
-	}
-
-
 }

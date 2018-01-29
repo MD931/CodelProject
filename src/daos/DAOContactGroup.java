@@ -1,8 +1,11 @@
 package daos;
 
+import java.util.List;
+
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import daos.interfaces.IDAOContactGroup;
+import entities.Contact;
 import entities.ContactGroup;
 
 public class DAOContactGroup extends HibernateDaoSupport implements IDAOContactGroup {
@@ -26,4 +29,8 @@ public class DAOContactGroup extends HibernateDaoSupport implements IDAOContactG
 		getHibernateTemplate().delete(c);
 	}
 
+	@Override
+	public List<ContactGroup> getAllContactGroup() {
+		return (List<ContactGroup>)getHibernateTemplate().find("from ContactGroup");
+	}
 }

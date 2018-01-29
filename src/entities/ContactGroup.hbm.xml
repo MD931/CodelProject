@@ -15,7 +15,7 @@
 		</property>
 
 		<set name="contacts" table="contact_contactgroup" inverse="true"
-			lazy="true">
+			lazy="false">
 			<key column="id_contactgroup" />
 			<many-to-many class="Contact" column="id_contact" />
 		</set>

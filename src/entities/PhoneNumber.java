@@ -2,7 +2,7 @@ package entities;
 
 public class PhoneNumber {
 	
-	private Integer id;
+	private Long id;
 	private String phoneKind;
 	private String phoneNumber;
 	private Contact contact;
@@ -19,11 +19,11 @@ public class PhoneNumber {
 		this.contact = contact;
 	}
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ContactGroup {
-	private Integer groupId;
+	private Long groupId;
 	private String groupName;
 	private Set<Contact> contacts;
 	private int version;
@@ -19,10 +19,10 @@ public class ContactGroup {
 		this.contacts = new HashSet<Contact>();
 	}
 	
-	public Integer getGroupId() {
+	public Long getGroupId() {
 		return groupId;
 	}
-	public void setGroupId(Integer groupId) {
+	public void setGroupId(Long groupId) {
 		this.groupId = groupId;
 	}
 	public String getGroupName() {
@@ -38,5 +38,9 @@ public class ContactGroup {
 	
 	public void setContacts(Set<Contact> contacts) {
 		this.contacts = contacts;
+	}
+	
+	public void addContact(Contact contact) {
+		contacts.add(contact);
 	}
 }

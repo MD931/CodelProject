@@ -54,6 +54,30 @@
 	<bean id="contactServices" class="services.ContactServices" scope="singleton" >
 		<constructor-arg ref="daoContact"></constructor-arg>
 	</bean>
+	
+	<bean id="daoEntreprise" class="daos.DAOEntreprise" scope="singleton" >
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="entrepriseServices" class="services.EntrepriseServices" scope="singleton" >
+		<constructor-arg ref="daoEntreprise"></constructor-arg>
+	</bean>
+	
+	<bean id="daoContactGroup" class="daos.DAOContactGroup" scope="singleton" >
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="contactGroupServices" class="services.ContactGroupServices" scope="singleton" >
+		<constructor-arg ref="daoContactGroup"></constructor-arg>
+	</bean>
+	
+	<bean id="daoPhoneNumber" class="daos.DAOPhoneNumber" scope="singleton" >
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="phoneNumberServices" class="services.PhoneNumberServices" scope="singleton" >
+		<constructor-arg ref="daoPhoneNumber"></constructor-arg>
+	</bean>
 
 	
 	<bean id="address1" class="entities.Address" scope="prototype">

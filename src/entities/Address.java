@@ -2,7 +2,7 @@ package entities;
 
 public class Address {
 	
-	private Integer id;
+	private Long id;
 	private String street;
 	private String city;
 	private String zip;
@@ -20,10 +20,10 @@ public class Address {
 		this.zip = zip;
 		this.country = country;
 	}
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getStreet() {

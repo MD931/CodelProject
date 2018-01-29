@@ -18,6 +18,9 @@
 		<property name="phoneNumber">
 			<column name="phonenumber" />
 		</property>
+		
+		
+	<many-to-one name="contact" class="entities.Contact" column="id_contact" not-null="true" optimistic-lock="false" ></many-to-one>
 
 	</class>
 </hibernate-mapping>

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet"/>	
+	<link rel="stylesheet" href="css/style.css" />
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'/>
+	<link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'/>
+	
+	<title>Login Page</title>
+</h:head>
+<h:body>
+<div class='login'>
+<h:messages class="alert alert-danger text-center"/>
+  <h2>Login</h2>
+  <h:form>
+<h:inputText value="#{login.login}" a:placeholder="Login"/>
+<h:inputSecret value="#{login.password}" a:placeholder="password"/>
+<br />
+<h:commandButton value="Login" action="#{login.controlLogin}" class="animated" style="maring-top:10px"/>
+  <a class='forgot' href='register.jsp'>Not registred yet?</a>
+  </h:form>
+    <div id='error' style="text-align : center; font-style:bold; color : red;">	
+  </div>
+</div>
+</h:body>
+</html>
