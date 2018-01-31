@@ -1,6 +1,8 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Contact {
@@ -78,6 +80,14 @@ public class Contact {
 	
 	public void setBooks(Set<ContactGroup> books) {
 		this.books = books;
+	}
+	
+	public void setProfilesList(List<PhoneNumber> a) {
+		
+	}
+	
+	public List<PhoneNumber> getProfilesList() {
+		  return new ArrayList<>(profiles);
 	}
 
 

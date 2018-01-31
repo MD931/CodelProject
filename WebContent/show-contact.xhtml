@@ -128,75 +128,114 @@
 		id="bjax-target" style="bottom:0px">
 	<div class="row">
 		<div class="col-md-10">
-			<!-- The Modal -->
 
 			<h2 class="font-thin">#{msgs.updateContact}</h2>
 			<h:messages class="alert alert-danger text-center" />
 
 			<section>
 			<div class="panel-body">
-				<!-- The Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">Test Modal</h4>
-				</div>
-				<div class="modal-body"></div>
-			</div>
-		</div>
-	</div>
-				<div class="row">
-					<ui:repeat value="#{main.contacts}" var="contact">
-						<div class="col-sm-6">
-							<div class="panel">
-								<div class="panel-body p-t-10">
-									<div class="media-main">
-										<div class="pull-right btn-group-sm">
-											<h:form>
-												<h:link	outcome="show-contact" 
-													class="btn btn-info tooltips"
-													style="margin-right:2px" data-toggle="modal"
-													data-target="#myModal">
-													<f:param name="id" value="#{contact.id}" />
-													<i class="fa fa-eye"></i>
-												</h:link>
-												<h:link outcome="edit-contact"
-													class="btn btn-success tooltips" data-placement="top"
-													data-toggle="tooltip" style="margin-right:2px"
-													data-original-title="Edit">
-													<f:param name="id" value="#{contact.id}" />
-													<i class="fa fa-pencil"></i>
-												</h:link>
-												<h:commandLink
-													onclick="if (! confirm('Really want to do that?')) return false"
-													action="#{main.supprimerContact}"
-													class="btn btn-danger tooltips" data-placement="top"
-													data-toggle="tooltip" data-original-title="Delete">
-													<f:setPropertyActionListener value="#{contact}"
-														target="#{main.selectedContact}" />
-													<i class="fa fa-close"></i>
-												</h:commandLink>
-											</h:form>
-										</div>
-										<div class="info">
-											<h3>#{contact.firstName} #{contact.lastName}</h3>
-											<h4>#{contact.email}</h4>
-											<p class="text-muted">#{contact.add.street},
-												#{contact.add.city} #{contact.add.zip}
-												#{contact.add.country}</p>
-										</div>
-									</div>
-									<div class="clearfix"></div>
-								</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">#{showContact.contact.firstName}
+							#{showContact.contact.lastName}</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-2 col-lg-2 " align="center">
+								<img alt="User Pic" src="img/avatar.png"
+									class="img-circle img-responsive" />
+							</div>
+							<div class=" col-md-10 col-lg-10 ">
+								<table class="table table-user-information">
+									<tbody>
+										<tr>
+											<td><b>#{msgs.firstname}</b></td>
+											<td>#{showContact.contact.firstName}</td>
+										</tr>
+										<tr>
+											<td><b>#{msgs.lastname}</b></td>
+											<td>#{showContact.contact.lastName}</td>
+										</tr>
+										<tr>
+											<td><b>#{msgs.email}</b></td>
+											<td>#{showContact.contact.email}</td>
+										</tr>
+										<tr>
+											<td><b>#{msgs.address}</b></td>
+											<td>#{showContact.contact.add.street}</td>
+										</tr>
+										<tr>
+											<td><b>#{msgs.city}</b></td>
+											<td>#{showContact.contact.add.zip}
+												#{showContact.contact.add.city}</td>
+										</tr>
+										<tr>
+											<td><b>#{msgs.country}</b></td>
+											<td>#{showContact.contact.add.country}</td>
+										</tr>
+										<h:panelGroup rendered="#{not empty showContact.numSiret}">
+											<tr>
+												<td><b>#{msgs.numSiret}</b></td>
+												<td>#{showContact.contact.numSiret}</td>
+											</tr>
+										</h:panelGroup>
+
+										<tr>
+											<td><b>#{msgs.phoneNumbers}</b></td>
+											<td><c:if test="#{not empty showContact.profiles}">
+													<ui:repeat value="#{showContact.profiles}" var="phone">
+											#{phone.phoneNumber} (#{phone.phoneKind})<br />
+														<br />
+													</ui:repeat>
+												</c:if> <c:if test="#{empty showContact.profiles}">
+												#{msgs.noNumber}
+											</c:if></td>
+										</tr>
+										
+										<tr>
+											<td><b>#{msgs.groups}</b></td>
+											<td><c:if test="#{not empty showContact.groups}">
+													<ui:repeat value="#{showContact.groups}" var="group">
+											<h:link outcome="main">#{group.groupName}</h:link><br />
+														<br />
+													</ui:repeat>
+												</c:if> <c:if test="#{empty showContact.groups}">
+												#{msgs.noGroup}
+											</c:if></td>
+										</tr>
+
+									</tbody>
+								</table>
+
 							</div>
 						</div>
-					</ui:repeat>
+					</div>
+					<div class="panel-footer">
+						<a href="mailto:#{showContact.contact.email}"
+							data-original-title="Broadcast Message" data-toggle="tooltip"
+							type="button" class="btn btn-sm btn-primary"><i
+							class="fa fa-envelope"></i></a> <span class="pull-right"> <h:form>
+								<h:link outcome="edit-contact" class="btn btn-success tooltips"
+									data-placement="top" data-toggle="tooltip"
+									style="margin-right:2px" data-original-title="Edit">
+									<f:param name="id" value="#{showContact.contact.id}" />
+									<i class="fa fa-pencil"></i>
+								</h:link>
+								<h:commandLink
+									onclick="if (! confirm('Really want to do that?')) return false"
+									action="#{showContact.supprimerContact}"
+									class="btn btn-danger tooltips" data-placement="top"
+									data-toggle="tooltip" data-original-title="Delete">
+									<i class="fa fa-close"></i>
+								</h:commandLink>
+							</h:form>
+						</span>
+					</div>
+
 				</div>
 			</div>
 			</section>
 		</div>
-
 		<div class="col-md-5"></div>
 	</div>
 	<!-- footer --> <!-- / footer --> </section> </section> </section> <!-- side content --> <!-- / side content -->

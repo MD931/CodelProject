@@ -131,7 +131,7 @@
                   <div class="row">
                     <div class="col-md-10">
                     
-                      <h2 class="font-thin">#{msgs.updateContact}</h2>
+                      <h2 class="font-thin">#{msgs.addContact}</h2>
                     <h:messages class="alert alert-danger text-center" />
                     
                   <section class="panel panel-default">
@@ -140,58 +140,56 @@
                         <div class="form-group">
                           <label class="col-lg-2 control-label">#{msgs.firstname} :</label>
                           <div class="col-lg-10">
-                            <h:inputText value="#{editContact.firstname}" id="firstname" class="input-data" label="Firstname"></h:inputText>
+                            <h:inputText value="#{createContact.firstname}" id="firstname" class="input-data" label="Firstname"></h:inputText>
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="col-lg-2 control-label">#{msgs.lastname} :</label>
                           <div class="col-lg-10">
-                            <h:inputText value="#{editContact.lastname}" id="lname" class="input-data" label="Lastname"></h:inputText>
+                            <h:inputText value="#{createContact.lastname}" id="lname" class="input-data" label="Lastname"></h:inputText>
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="col-lg-2 control-label">#{msgs.email} :</label>
                           <div class="col-lg-10">
-                            <h:inputText value="#{editContact.email}" id="email" class="input-data" label="Email"></h:inputText>
+                            <h:inputText value="#{createContact.email}" id="email" class="input-data" label="Email"></h:inputText>
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="col-lg-2 control-label">#{msgs.street} :</label>
                           <div class="col-lg-10">
-                         	<h:inputText value="#{editContact.street}" id="street" class="input-data" label="Street"></h:inputText>
+                         	<h:inputText value="#{createContact.street}" id="street" class="input-data" label="Street"></h:inputText>
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="col-lg-2 control-label">#{msgs.city} :</label>
                           <div class="col-lg-10">
-                            <h:inputText value="#{editContact.city}" id="city" class="input-data" label="City"></h:inputText>
+                            <h:inputText value="#{createContact.city}" id="city" class="input-data" label="City"></h:inputText>
                           </div>
                         </div>
                          <div class="form-group">
                           <label class="col-lg-2 control-label">#{msgs.zip} :</label>
                           <div class="col-lg-10">
-                            <h:inputText value="#{editContact.zip}" id="zip" class="input-data" label="Zip"></h:inputText>
+                            <h:inputText value="#{createContact.zip}" id="zip" class="input-data" label="Zip"></h:inputText>
                           </div>
                         </div>
                          <div class="form-group">
                           <label class="col-lg-2 control-label">#{msgs.country} :</label>
                           <div class="col-lg-10">
-                            <h:inputText value="#{editContact.country}" id="country" class="input-data" label="Country"></h:inputText>
+                            <h:inputText value="#{createContact.country}" id="country" class="input-data" label="Country"></h:inputText>
                           </div>
                         </div>
-                        <h:panelGroup rendered="#{not empty editContact.numSiret}">
                          <div class="form-group">
                           <label class="col-lg-2 control-label">#{msgs.numSiret} :</label>
                           <div class="col-lg-10">
-                           <h:inputText value="#{editContact.numSiret}" id="numsiret" class="input-data" label="Num Siret"></h:inputText>
+                           <h:inputText value="#{createContact.numSiret}" id="numsiret" class="input-data" label="Num Siret"></h:inputText>
                           </div>
                         </div>
-                        </h:panelGroup>
                         <div class="form-group">
                           <label class="col-lg-2 control-label">#{msgs.group} :</label>
                           <div class="col-lg-10">
-                           	<h:selectManyListbox value="#{editContact.selectedGroupsId}" class="input-data" converter="javax.faces.Long">
-						   		<f:selectItems value="#{editContact.allGroups}" var="f"
+                           	<h:selectManyListbox value="#{createContact.selectedGroupsId}" class="input-data" converter="javax.faces.Long">
+						   		<f:selectItems value="#{createContact.allGroups}" var="f"
 						   			itemLabel="#{f.groupName}" itemValue="#{f.groupId}" />
 						   	</h:selectManyListbox>
                           </div>
@@ -200,18 +198,18 @@
                    		
                    			<label class="col-lg-2 control-label"></label>
                           <div class="col-lg-10">
-                           	<h:dataTable value="#{editContact.profiles}" var="phone" class="col-lg-9 col-lg-pull-1">
+                           	<h:dataTable value="#{createContact.phones}" var="phone" class="col-lg-9 col-lg-pull-1">
 						      	<h:column style="margin-right:5px">#{msgs.type} :</h:column><h:column><h:inputText value="#{phone.phoneKind}" /></h:column>
 						       	<h:column>#{msgs.number} : </h:column><h:column><h:inputText value="#{phone.phoneNumber}" /></h:column>
-						       	<h:column><h:commandButton value="#{msgs.remove}" action="#{editContact.remove(phone)}" /></h:column>
+						       	<h:column><h:commandButton value="#{msgs.remove}" action="#{createContact.remove(phone)}" /></h:column>
 							</h:dataTable>
 							</div>
                         </div>
                         <div class="form-group">
                           <div class="col-lg-offset-2 col-lg-10" align='right'>
                           		<h:commandButton value="#{msgs.reset}" class="btn" type="reset" />
-                          	  	<h:commandButton value="#{msgs.addPhone}" class="btn btn-s-md btn-primary" style="margin-left:5px" action="#{editContact.add}" />
-							  	<h:commandButton value="#{msgs.update}" class="btn btn-s-md btn-success" style="margin-left:5px" action="#{editContact.edit}" />
+                          	  	<h:commandButton value="#{msgs.addPhone}" class="btn btn-s-md btn-primary" style="margin-left:5px" action="#{createContact.add}" />
+							  	<h:commandButton value="#{msgs.create}" class="btn btn-s-md btn-success" style="margin-left:5px" action="#{createContact.create}" />
                           </div>
                         </div>
                       </h:form>

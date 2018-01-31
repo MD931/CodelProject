@@ -151,7 +151,7 @@ public class CreateContact implements Serializable{
 		FacesContext context = FacesContext.getCurrentInstance();
 		boolean error = false;
 		if(firstname.isEmpty()) {
-			context.addMessage("fname", new FacesMessage("Champ first obligatoire !"));
+			context.addMessage("firstname", new FacesMessage("Champ first obligatoire !"));
 			error = true;
 		}
 		if(lastname.isEmpty()) {
