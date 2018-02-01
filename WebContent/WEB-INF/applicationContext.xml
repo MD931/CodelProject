@@ -46,7 +46,7 @@
 	<aop:config>
 		<aop:advisor pointcut="execution(* daos.*.*(..))" advice-ref="txAdvice"/>
 	</aop:config>
-
+	
 	<bean id="daoContact" class="daos.DAOContact" scope="singleton" >
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
@@ -108,7 +108,29 @@
 		<constructor-arg ><value>john.doe@doe.fr</value></constructor-arg>		
 		<property name="add" ref="address2" />
 	</bean>
+	<aop:config>
+		<aop:aspect id="checkAddContactBean" ref="fieldValidator">
+			<aop:around pointcut="execution(* services.ContactServices.create(*,*,*,*,*,*)) 
+							and args(firstname,lastname,email,address,phones,*)"
+				method="createContact" arg-names="pjp,firstname,lastname,email,address,phones"/>
+		</aop:aspect>
+	</aop:config>
+	<aop:config>
+		<aop:aspect id="checkUpdateContactBean" ref="fieldValidator">
+			<aop:around pointcut="execution(* services.ContactServices.update(*,*,*,*,*,*,*,*)) 
+							and args(c,firstName,lastName,email,street,city,zip,country)"
+				method="updateContact" arg-names="pjp,c,firstName,lastName,email,street,city,zip,country"/>
+		</aop:aspect>
+	</aop:config>
 	
-
-
+	<aop:config>
+		<aop:aspect id="checkAddEntrepriseBean" ref="fieldValidator">
+			<aop:around pointcut="execution(* services.EntrepriseServices.create(*,*,*,*,*,*,*)) 
+							and args(firstname,lastname,email,address,phones,*,numSiret)"
+				method="createEntreprise" arg-names="pjp,firstname,lastname,email,address,phones,numSiret"/>
+		</aop:aspect>
+	</aop:config>
+	
+		
+		<bean id="fieldValidator" class="util.FieldValidator"/>
 </beans>

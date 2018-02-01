@@ -22,7 +22,7 @@ public class ContactServices {
 		this.dao = dao;
 	}
 
-	public void create(String firstname, String lastname, String email, Address address, 
+	public int create(String firstname, String lastname, String email, Address address, 
 			Set<PhoneNumber> phones, Set<ContactGroup> books) {
 		Contact c = new Contact(firstname, lastname, email);
 		c.setAdd(address);
@@ -35,6 +35,7 @@ public class ContactServices {
 			book.addContact(c);
 		});
 		dao.create(c);
+		return ResponseTools.SUCCESS;
 	}
 
 	public Contact read(Long id) {
@@ -55,9 +56,7 @@ public class ContactServices {
 			return ResponseTools.SUCCESS;
 		} catch (StaleObjectStateException e) {
 			return ResponseTools.VERSION_ERROR;
-		} catch (Exception e) {
-			return ResponseTools.MAIN_ERROR;
-		}
+		} 
 	}
 
 	public int delete(Contact entity) {
@@ -75,6 +74,7 @@ public class ContactServices {
 		return dao.getAllContacts(firstResult, maxResults);
 
 	}
+	
 
 
 }

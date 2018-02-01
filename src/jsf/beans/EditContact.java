@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
@@ -48,7 +50,8 @@ public class EditContact implements Serializable{
 	private ContactGroupServices cgs;
 	private EntrepriseServices es;
 	private PhoneNumberServices ps;
-
+	@ManagedProperty("#{msgs}")
+	private ResourceBundle msgs;
 	@PostConstruct
 	public void init(){
 		System.out.println("init");
@@ -224,7 +227,6 @@ public class EditContact implements Serializable{
 
 
 	public void edit() {
-		System.out.println("edit");
 		FacesContext context = FacesContext.getCurrentInstance();
 		List<ContactGroup> selectedGroups = new ArrayList<>();
 		for(Long id : selectedGroupsId) {
@@ -236,36 +238,70 @@ public class EditContact implements Serializable{
 			}
 		}
 		contact.setBooks(new HashSet<>(selectedGroups));
+		contact.setProfiles(new HashSet<>(profiles));
 		if(contact instanceof Entreprise) {
-			System.out.println("edit Entreprise");
 			Entreprise entreprise = (Entreprise) contact;
-			if(numSiret.toString().isEmpty()) {
-				context.addMessage("numSiret", new FacesMessage("NumSiret required"));
+			if(numSiret.toString().isEmpty() || numSiret.toString().matches("^[0-9]{5,}$")) {
+				context.addMessage("numSiret", new FacesMessage(msgs.getString("errorNumsiret")));
 			}else {
-				System.out.println("edit numSiret not empty "+numSiret);
 				int result = es.update(entreprise, firstname, lastname, email, street, city, zip, country, numSiret);
 				if(result == ResponseTools.SUCCESS) {
-					context.addMessage("success", new FacesMessage("Modification effectuée avec succès"));
+					context.addMessage("success", new FacesMessage(msgs.getString("updatedSucces")));
 				}else if(result == ResponseTools.VERSION_ERROR) {
-					context.addMessage("error", new FacesMessage("Version erreur"));
+					context.addMessage("error", new FacesMessage(msgs.getString("errorVersion")));
 				}else {
-					context.addMessage("error", new FacesMessage("Echec de modification"));
+					context.addMessage("error", new FacesMessage(error(result)));
 				}
 			}
 		}else {
 			int result = cs.update(contact, firstname, lastname, email, street, city, zip, country);
 			if(result == ResponseTools.SUCCESS) {
-				context.addMessage("success", new FacesMessage("Modification effectuée avec succès"));
+				context.addMessage("success", new FacesMessage(msgs.getString("updatedSucces")));
 			}else if(result == ResponseTools.VERSION_ERROR) {
-				context.addMessage("error", new FacesMessage("Version erreur"));
+				context.addMessage("error", new FacesMessage(msgs.getString("errorVersion")));
 			}else {
-				context.addMessage("error", new FacesMessage("Echec de modification"));
+				context.addMessage("error", new FacesMessage(error(result)));
 			}
 		}
 	}
 
 	public void loadData() {
 		System.out.println("loadData");
+	}
+	
+	public String error(int responseError) {
+		switch (responseError) {
+		case ResponseTools.FIRSTNAME_ERROR:
+			return msgs.getString("errorFirstName");
+		case ResponseTools.LASTNAME_ERROR:
+			return msgs.getString("errorLasttName");
+		case ResponseTools.EMAIL_ERROR:
+			return msgs.getString("errorEmail");
+		case ResponseTools.STREET_ERROR:
+			return msgs.getString("errorStreet");
+		case ResponseTools.CITY_ERROR:
+			return msgs.getString("errorCity");
+		case ResponseTools.ZIP_ERROR:
+			return msgs.getString("errorZip");
+		case ResponseTools.COUNTRY_ERROR:
+			return msgs.getString("errorCountry");
+		case ResponseTools.PHONE_KIND_ERROR:
+			return msgs.getString("errorKind");
+		case ResponseTools.PHONE_NUMBER_ERROR:
+			return msgs.getString("errorNumber");
+		default:
+			return msgs.getString("error");
+		}
+	} 
+	
+	public ResourceBundle getMsgs() {
+		return msgs;
+	}
+
+
+
+	public void setMsgs(ResourceBundle msgs) {
+		this.msgs = msgs;
 	}
 
 
