@@ -193,8 +193,9 @@
 										</tr>
 										
 										<tr>
+										
 											<td><b>#{msgs.groups}</b></td>
-											<td><c:if test="#{not empty showContact.groups}">
+											<td><c:if test="#{not empty showContact.groups }">
 													<ui:repeat value="#{showContact.groups}" var="group">
 											<h:link outcome="main">#{group.groupName}</h:link><br />
 														<br />

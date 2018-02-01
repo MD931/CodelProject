@@ -3,100 +3,188 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
+	<link rel="stylesheet" href="js/jPlayer/jplayer.flat.css"
+		type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" />
+	<link rel="stylesheet" href="css/font.css" type="text/css" />
+	<link rel="stylesheet" href="css/app.css" type="text/css" />
+	<link rel="stylesheet" href="css/my-style.css" type="text/css" />
+	<link
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+		rel="stylesheet" />
 
-	<title>Edit Group</title>
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-		integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-		crossorigin="anonymous" />
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-		integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-		integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-		integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-		crossorigin="anonymous"></script>
+
+	<title>Groups</title>
 </h:head>
 <h:body>
-<h:messages class="alert alert-danger text-center"/>
-	<h:form>
-		<h:dataTable value="#{listGroup.contactGroups}" var="group"
-			styleClass="order-table" headerClass="order-table-header"
-			rowClasses="order-table-odd-row,order-table-even-row">
-
-			<h:column>
-				<!-- column header -->
-				<f:facet name="header">Group-name</f:facet>
-				<!-- row record -->
-    				#{group.groupName}
-    			</h:column>
-
-
-			<h:column>
-				<h:commandLink
-					onclick="if (! confirm('Really want to do that?')) return false"
-					class="edit_icon" action="#{listGroup.supprimerGroup}"
-					value="Supprimer">
-					<f:setPropertyActionListener value="#{group}"
-						target="#{listGroup.selectedGroup}" />
-				</h:commandLink>
-			</h:column>
-
-			<h:column>
-				<h:commandButton onclick="$('#myModal').modal('show');">
-					<f:ajax execute="@this" render=":myForm" />
-					<f:setPropertyActionListener value="#{group}"
-						target="#{listGroup.selectedGroup}" />
-				</h:commandButton>
-			</h:column>
-
-			<h:column>
-				<span class="glyphicon glyphicon-align-left"></span>
-			</h:column>
-
-			<h:column>
-				<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-			</h:column>
-		</h:dataTable>
-	</h:form>
-
-	<!-- The Modal -->
-	<div class="modal fade" id="myModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<h:form id="myForm">
-					<div class="modal-header">
-						<h4 class="modal-title">Test Modal</h4>
-					</div>
-					<div class="modal-body">
-						<h:panelGrid columns="3">
-							<h:outputLabel value="Group name : " for="ngroup"></h:outputLabel>
-							<h:inputText value="#{listGroup.selectedGroup.groupName}" id="ngroup"
-								label="Group name"></h:inputText>
-							<h:message for="ngroup" style="color: red"></h:message>
-						</h:panelGrid>
-						<h:commandLink value="Edit" action="#{listGroup.editGroup()}">
-						</h:commandLink>
-						<h:commandButton value="Reset" type="reset" />
-					</div>
-					<h:panelGroup layout="block" styleClass="modal-footer">
-						<h:commandLink value="Close" immediate="true"
-							styleClass="btn btn-default"
-							oncomplete="$('#myModal').modal('hide');" />
-					</h:panelGroup>
-				</h:form>
+	<section class="vbox"> <header
+		class="bg-white-only header header-md navbar navbar-fixed-top-xs">
+	<div class="navbar-header aside bg-info nav-xs">
+		<a class="btn btn-link visible-xs"
+			data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+			<i class="icon-list"></i>
+		</a> <a href="Home.html" class="navbar-brand text-lt"> <i
+			class="icon-film"></i> <img src="images/logo.png" alt="."
+			class="hide" /> <span class="hidden-nav-xs m-l-sm"
+			style="font-family: 'CollegeMovie'; font-size: 30px; font-weight: normal;">MyAgenda</span>
+		</a> <a class="btn btn-link visible-xs" data-toggle="dropdown"
+			data-target=".user"> <i class="icon-settings"></i>
+		</a>
+	</div>
+	<ul class="nav navbar-nav hidden-xs">
+		<li><a href="#nav,.navbar-header"
+			data-toggle="class:nav-xs,nav-xs" class="text-muted"> <i
+				class="fa fa-indent text"></i> <i class="fa fa-dedent text-active"></i>
+		</a></li>
+	</ul>
+	<form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs">
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button type="submit" onclick="SearchEvent();return false;"
+						class="btn btn-sm bg-white btn-icon rounded">
+						<i class="fa fa-search"></i>
+					</button>
+				</span> <input type="text" id="search_keywords"
+					class="form-control input-sm no-border rounded"
+					placeholder="#{msgs.searchContact}" />
 			</div>
 		</div>
+	</form>
+
+	</header> <section> <section class="hbox stretch"> <!-- .aside -->
+	<aside class="bg-black dk nav-xs aside hidden-print" id="nav">
+	<section class="vbox"> <section class="w-f-md scrollable">
+	<div class="slim-scroll" data-height="auto"
+		data-disable-fade-out="true" data-distance="0" data-size="10px"
+		data-railOpacity="0.2">
+
+
+
+		<!-- nav -->
+		<nav class="nav-primary hidden-xs">
+		<ul class="nav bg clearfix">
+			<br />
+			<li><a> <i class="icon-users icon text-success"></i>
+					<form action="displayContactGroup" method="post">
+						<p>
+							<input type="submit" name="submit" value="my groups"
+								class="btn btn-s-md btn-info" />
+						</p>
+					</form>
+			</a></li>
+			<li><a> <i class="icon-close icon text-success"></i>
+					<form action="displayContacts" method="post">
+						<p>
+							<input type="submit" name="submit" value="delete group"
+								class="btn btn-s-md btn-info" />
+						</p>
+					</form>
+			</a></li>
+			<li><a> <i class="icon-emoticon-smile  text-info"></i>
+					<form action="displayContacts" method="post">
+						<p>
+							<input type="submit" name="submit" value="my contacts"
+								class="btn btn-s-md btn-info" />
+						</p>
+					</form>
+			</a></li>
+
+			<li><a> <i class="icon-close icon  text-info"></i>
+					<form action="peupler" method="post">
+						<p>
+							<input type="submit" name="submit" value="delete contact"
+								class="btn btn-s-md btn-info" />
+						</p>
+					</form>
+			</a></li>
+
+			<li><a> <i class=" icon-magic-wand text-warning"></i>
+					<form action="peupler" method="post">
+						<p>
+							<input type="submit" name="submit" value="peupler BD"
+								class="btn btn-s-md btn-warning" />
+						</p>
+					</form>
+			</a></li>
+
+			<li class="m-b hidden-nav-xs"></li>
+		</ul>
+
+		</nav>
+		<!-- / nav -->
 	</div>
+	</section> </section> </aside> <!-- /.aside --> <section id="content"> <section
+		class="hbox stretch"> <section> <section
+		class="vbox"> <section class="scrollable padder-lg w-f-md"
+		id="bjax-target" style="bottom:0px">
+	<div class="row">
+		<div class="col-md-10">
+			<!-- The Modal -->
+
+			<h2 class="font-thin">#{msgs.listGroups}</h2>
+			<h:messages class="alert alert-danger text-center" />
+
+			<section>
+			<div class="panel-body">
+				<div class="row">
+					<ui:repeat value="#{listGroup.contactGroups}" var="group">
+						<div class="col-sm-6">
+							<div class="panel">
+								<div class="panel-body p-t-10">
+									<div class="media-main">
+										<div class="pull-right btn-group-sm">
+											<h:form>
+												<h:link	outcome="show-group" 
+													class="btn btn-info tooltips"
+													style="margin-right:2px" data-toggle="modal"
+													data-target="#myModal">
+													<f:param name="id" value="#{group.groupId}" />
+													<i class="fa fa-eye"></i>
+												</h:link>
+												<h:link outcome="edit-group"
+													class="btn btn-success tooltips" data-placement="top"
+													data-toggle="tooltip" style="margin-right:2px"
+													data-original-title="Edit">
+													<f:param name="id" value="#{group.groupId}" />
+													<i class="fa fa-pencil"></i>
+												</h:link>
+												<h:commandLink
+													onclick="if (! confirm('Really want to do that?')) return false"
+													action="#{listGroup.supprimerGroup}"
+													class="btn btn-danger tooltips" data-placement="top"
+													data-toggle="tooltip" data-original-title="Delete">
+													<f:setPropertyActionListener value="#{group}"
+														target="#{listGroup.selectedGroup}" />
+													<i class="fa fa-close"></i>
+												</h:commandLink>
+											</h:form>
+										</div>
+										<div class="info">
+											<h3>#{group.groupName}</h3>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</ui:repeat>
+				</div>
+			</div>
+			</section>
+		</div>
+
+		<div class="col-md-5"></div>
+	</div>
+	<!-- footer --> <!-- / footer --> </section> </section> </section> <!-- side content --> <!-- / side content -->
+	</section> </section> </section> </section> </section>
 </h:body>
 </html>

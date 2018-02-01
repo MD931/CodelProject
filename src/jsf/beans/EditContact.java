@@ -30,7 +30,6 @@ import util.ResponseTools;
 @ViewScoped
 public class EditContact implements Serializable{
 	
-	
 	String firstname;
 	String lastname;
 	String email;

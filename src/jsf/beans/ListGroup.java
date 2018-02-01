@@ -73,6 +73,10 @@ public class ListGroup implements Serializable{
 			contactGroups = cgs.getAllContactGroup();
 		}
 	}
+	
+	
+	
+	
 
 
 }

@@ -14,7 +14,7 @@
     <param-value>Development</param-value>
   </context-param>
   <welcome-file-list>
-    <welcome-file>register.jsp</welcome-file>
+    <welcome-file>login.jsf</welcome-file>
   </welcome-file-list>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
