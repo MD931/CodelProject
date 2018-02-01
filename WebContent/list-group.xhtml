@@ -31,7 +31,7 @@
 		<a class="btn btn-link visible-xs"
 			data-toggle="class:nav-off-screen,open" data-target="#nav,html">
 			<i class="icon-list"></i>
-		</a> <a href="Home.html" class="navbar-brand text-lt"> <i
+		</a> <a href="main.jsf" class="navbar-brand text-lt" style="height:60px"> <i
 			class="icon-film"></i> <img src="images/logo.png" alt="."
 			class="hide" /> <span class="hidden-nav-xs m-l-sm"
 			style="font-family: 'CollegeMovie'; font-size: 30px; font-weight: normal;">MyAgenda</span>
@@ -73,44 +73,35 @@
 		<nav class="nav-primary hidden-xs">
 		<ul class="nav bg clearfix">
 			<br />
-			<li><a> <i class="icon-users icon text-success"></i>
-					<form action="displayContactGroup" method="post">
-						<p>
-							<input type="submit" name="submit" value="my groups"
-								class="btn btn-s-md btn-info" />
-						</p>
-					</form>
-			</a></li>
-			<li><a> <i class="icon-close icon text-success"></i>
-					<form action="displayContacts" method="post">
-						<p>
-							<input type="submit" name="submit" value="delete group"
-								class="btn btn-s-md btn-info" />
-						</p>
-					</form>
-			</a></li>
-			<li><a> <i class="icon-emoticon-smile  text-info"></i>
-					<form action="displayContacts" method="post">
-						<p>
-							<input type="submit" name="submit" value="my contacts"
-								class="btn btn-s-md btn-info" />
-						</p>
-					</form>
-			</a></li>
 
-			<li><a> <i class="icon-close icon  text-info"></i>
-					<form action="peupler" method="post">
+			<li><a> <i class="icon-plus icon text-success"></i>
+					<form action="./create-contact.jsf" method="post">
 						<p>
-							<input type="submit" name="submit" value="delete contact"
+							<input type="submit" name="submit" value="#{msgs.addContact}"
 								class="btn btn-s-md btn-info" />
 						</p>
 					</form>
 			</a></li>
-
+			<li><a> <i class="icon-plus icon text-success"></i>
+					<form action="./create-group.jsf" method="post">
+						<p>
+							<input type="submit" name="submit" value="#{msgs.addGroup}"
+								class="btn btn-s-md btn-info" />
+						</p>
+					</form>
+			</a></li>
+			<li><a> <i class="icon-list icon text-success"></i>
+					<form action="./main.jsf" method="post">
+						<p>
+							<input type="submit" name="submit" value="#{msgs.listContacts}"
+								class="btn btn-s-md btn-info" />
+						</p>
+					</form>
+			</a></li>
 			<li><a> <i class=" icon-magic-wand text-warning"></i>
-					<form action="peupler" method="post">
+					<form action="populate.jsf" method="post">
 						<p>
-							<input type="submit" name="submit" value="peupler BD"
+							<input type="submit" name="submit" value="#{msgs.populate}"
 								class="btn btn-s-md btn-warning" />
 						</p>
 					</form>
@@ -143,8 +134,7 @@
 									<div class="media-main">
 										<div class="pull-right btn-group-sm">
 											<h:form>
-												<h:link	outcome="show-group" 
-													class="btn btn-info tooltips"
+												<h:link outcome="show-group" class="btn btn-info tooltips"
 													style="margin-right:2px" data-toggle="modal"
 													data-target="#myModal">
 													<f:param name="id" value="#{group.groupId}" />

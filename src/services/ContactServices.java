@@ -70,10 +70,25 @@ public class ContactServices {
 			return ResponseTools.MAIN_ERROR;
 		}
 	}
+	
+	public int populate(Contact entity) {
+		try {
+			dao.create(entity);
+			return ResponseTools.SUCCESS;
+		} catch (StaleObjectStateException e) {
+			return ResponseTools.VERSION_ERROR;
+		} catch (Exception e) {
+			return ResponseTools.MAIN_ERROR;
+		}
+	}
 
 	public List<Contact> getAllContacts(int firstResult, int maxResults){
 		return dao.getAllContacts(firstResult, maxResults);
-
+	}
+	
+	public List<Contact> searchContacts(String fullName){
+		String[] tokens = fullName.trim().split(" ");
+		return dao.findContactByName(tokens);
 	}
 
 

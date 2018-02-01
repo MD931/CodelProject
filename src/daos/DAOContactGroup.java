@@ -20,7 +20,7 @@ public class DAOContactGroup extends HibernateDaoSupport implements IDAOContactG
 	}
 
 	public void update(ContactGroup entity) {
-		getHibernateTemplate().update(entity);
+		getHibernateTemplate().merge(entity);
 		
 	}
 

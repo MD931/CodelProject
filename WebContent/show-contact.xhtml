@@ -22,7 +22,7 @@
 		rel="stylesheet" />
 
 
-	<title>Create Contact</title>
+	<title>#{msgs.contact}</title>
 </h:head>
 <h:body>
 	<section class="vbox"> <header
@@ -31,7 +31,7 @@
 		<a class="btn btn-link visible-xs"
 			data-toggle="class:nav-off-screen,open" data-target="#nav,html">
 			<i class="icon-list"></i>
-		</a> <a href="Home.html" class="navbar-brand text-lt"> <i
+		</a> <a href="main.jsf" class="navbar-brand text-lt" style="height:60px"> <i
 			class="icon-film"></i> <img src="images/logo.png" alt="."
 			class="hide" /> <span class="hidden-nav-xs m-l-sm"
 			style="font-family: 'CollegeMovie'; font-size: 30px; font-weight: normal;">MyAgenda</span>
@@ -129,7 +129,7 @@
 	<div class="row">
 		<div class="col-md-10">
 
-			<h2 class="font-thin">#{msgs.updateContact}</h2>
+			<h2 class="font-thin">#{msgs.contact}</h2>
 			<h:messages class="alert alert-danger text-center" />
 
 			<section>
@@ -182,12 +182,12 @@
 
 										<tr>
 											<td><b>#{msgs.phoneNumbers}</b></td>
-											<td><c:if test="#{not empty showContact.profiles}">
+											<td><c:if test="#{showContact.profiles.size() > 0}">
 													<ui:repeat value="#{showContact.profiles}" var="phone">
 											#{phone.phoneNumber} (#{phone.phoneKind})<br />
 														<br />
 													</ui:repeat>
-												</c:if> <c:if test="#{empty showContact.profiles}">
+												</c:if> <c:if test="#{showContact.profiles.size() == 0}">
 												#{msgs.noNumber}
 											</c:if></td>
 										</tr>
@@ -195,12 +195,12 @@
 										<tr>
 										
 											<td><b>#{msgs.groups}</b></td>
-											<td><c:if test="#{not empty showContact.groups }">
+											<td><c:if test="#{showContact.groups.size() > 0 }">
 													<ui:repeat value="#{showContact.groups}" var="group">
 											<h:link outcome="main">#{group.groupName}</h:link><br />
 														<br />
 													</ui:repeat>
-												</c:if> <c:if test="#{empty showContact.groups}">
+												</c:if> <c:if test="#{showContact.groups.size() == 0}">
 												#{msgs.noGroup}
 											</c:if></td>
 										</tr>
@@ -215,7 +215,7 @@
 						<a href="mailto:#{showContact.contact.email}"
 							data-original-title="Broadcast Message" data-toggle="tooltip"
 							type="button" class="btn btn-sm btn-primary"><i
-							class="fa fa-envelope"></i></a> <span class="pull-right"> <h:form>
+							class="fa fa-envelope"></i></a> <span class="pull-right"> <h:form action="./showContact.jsf?id=#{showContact.id}">
 								<h:link outcome="edit-contact" class="btn btn-success tooltips"
 									data-placement="top" data-toggle="tooltip"
 									style="margin-right:2px" data-original-title="Edit">
@@ -223,11 +223,12 @@
 									<i class="fa fa-pencil"></i>
 								</h:link>
 								<h:commandLink
-									onclick="if (! confirm('Really want to do that?')) return false"
-									action="#{showContact.supprimerContact}"
+									action="#{showContact.deleteContact}"
 									class="btn btn-danger tooltips" data-placement="top"
 									data-toggle="tooltip" data-original-title="Delete">
 									<i class="fa fa-close"></i>
+									<f:param name="id" value="#{showContact.contact.id}" />
+									<f:setPropertyActionListener value="#{showContact.contact.id}" target="#{showContact.contact.id}" />
 								</h:commandLink>
 							</h:form>
 						</span>

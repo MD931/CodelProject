@@ -14,7 +14,7 @@
 			<column name="group_name" />
 		</property>
 
-		<set name="contacts" table="contact_contactgroup" inverse="true"
+		<set name="contacts" cascade="save-update" table="contact_contactgroup"
 			lazy="false">
 			<key column="id_contactgroup" />
 			<many-to-many class="Contact" column="id_contact" />

@@ -27,7 +27,7 @@
 		<a class="btn btn-link visible-xs"
 			data-toggle="class:nav-off-screen,open" data-target="#nav,html">
 			<i class="icon-list"></i>
-		</a> <a href="main.jsf" class="navbar-brand text-lt" style="height:60px"><i
+		</a> <a href="main.jsf" class="navbar-brand text-lt" style="height:60px"> <i
 			class="icon-film"></i> <img src="images/logo.png" alt="."
 			class="hide" /> <span class="hidden-nav-xs m-l-sm"
 			style="font-family: 'CollegeMovie'; font-size: 30px; font-weight: normal;">MyAgenda</span>
@@ -125,7 +125,7 @@
 		<div class="col-md-10">
 			<!-- The Modal -->
 
-			<h2 class="font-thin">#{showGroup.group.groupName}</h2>
+			<h2 class="font-thin">#{msgs.listContacts}</h2>
 			<h:messages class="alert alert-danger text-center" />
 
 			<section>
@@ -143,7 +143,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<ui:repeat value="#{showGroup.contacts}" var="contact">
+					<ui:repeat value="#{searchContact.contacts}" var="contact">
 						<div class="col-sm-6">
 							<div class="panel">
 								<div class="panel-body p-t-10">
@@ -165,12 +165,12 @@
 												</h:link>
 												<h:commandLink
 													onclick="if (! confirm('Really want to do that?')) return false"
-													action="#{showGroup.deleteContactFromGroup}"
+													action="#{searchContact.supprimerContact}"
 													class="btn btn-danger tooltips" data-placement="top"
 													data-toggle="tooltip" data-original-title="Delete">
-													<f:param name="id" value="#{group.groupId}" />
+													<f:param name="id" value="#{searchContact.search}" />
 													<f:setPropertyActionListener value="#{contact}"
-														target="#{showGroup.selectedContact}" />
+														target="#{searchContact.selectedContact}" />
 													<i class="fa fa-close"></i>
 												</h:commandLink>
 											</h:form>

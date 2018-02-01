@@ -19,6 +19,10 @@ public class ContactGroupServices {
 		this.dao = dao;
 	}
 	
+	public ContactGroup read(Long id) {
+		return dao.read(id);
+	}
+	
 	public void create(String groupName) {
 		ContactGroup cg= new ContactGroup(groupName);
 		dao.create(cg);
@@ -27,9 +31,9 @@ public class ContactGroupServices {
 	public List<ContactGroup> getAllContactGroup(){
 		return dao.getAllContactGroup();
 	}
-	public int update(ContactGroup cg) {
+	public int update(ContactGroup entity) {
 		try {
-			dao.update(cg);
+			dao.update(entity);
 			return ResponseTools.SUCCESS;
 		} catch (StaleObjectStateException e) {
 			return ResponseTools.VERSION_ERROR;
@@ -46,5 +50,10 @@ public class ContactGroupServices {
 		}catch (Exception e) {
 			return ResponseTools.MAIN_ERROR;
 		}
+	}
+	
+	public void removeContact(ContactGroup group, Contact contact) {
+		group.removeContact(contact);
+		dao.update(group);
 	}
 }

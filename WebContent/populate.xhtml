@@ -115,24 +115,17 @@
 	<div class="row">
 		<div class="col-md-10">
 
-			<h2 class="font-thin">#{msgs.createGroup}</h2>
+			<h2 class="font-thin">#{msgs.populate}</h2>
 			<h:messages class="alert alert-danger text-center" />
 
 			<section class="panel panel-default">
 			<div class="panel-body" style="width:100%">
 				<h:form>
 				<div class="form-group">
-				
 						<div class="col-lg-offset-2 col-lg-10">
-						<h:outputLabel value="Group name : " style="padding : 5%;" for="ngroup"></h:outputLabel>
-            			<h:inputText value="#{createGroup.groupName}" id="ngroup" class="input-data" label="Group name" />
-            			<h:message for="ngroup" style="color: red"></h:message>
-            
-							<h:commandButton value="#{msgs.reset}" class="btn" type="reset"/>
-							<h:commandButton value="#{msgs.addGroup}"
-								class="btn btn-s-md btn-primary" style="margin-left:5px"
-								action="#{createGroup.create}" />
-							
+							<h:commandButton value="#{msgs.launchPopulate}"
+								class="btn btn-s-md btn-primary" style="margin-left:auto;margin-right:auto"
+								action="#{populate.launchPopulate}" />							
 						</div>
 					</div>
 				</h:form>
