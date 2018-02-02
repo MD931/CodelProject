@@ -21,7 +21,7 @@ public class EntrepriseServices {
 		this.dao = dao;
 	}
 	
-	public void create(String firstname, String lastname, String email, Address address, 
+	public int create(String firstname, String lastname, String email, Address address, 
 			Set<PhoneNumber> phones, Set<ContactGroup> books, Integer numSiret) {
 		Entreprise e = new Entreprise(firstname, lastname, email, numSiret);
 		e.setAdd(address);
@@ -34,6 +34,7 @@ public class EntrepriseServices {
 			book.addContact(e);
 		});
 		dao.create(e);
+		return ResponseTools.SUCCESS;
 
 	}
 	

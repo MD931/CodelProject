@@ -28,8 +28,9 @@ public class PopulateBean {
 		ContactServices cs = (ContactServices) context.getBean("contactServices");
 		Contact c1 = (Contact) context.getBean("contact1");
 		Contact c2 = (Contact) context.getBean("contact2");
-		cs.populate(c1);
-		cs.populate(c2);
+		int msg1 = cs.populate(c1);
+		int msg2 = cs.populate(c2);
+		System.err.println("============= "+msg1+"        "+msg2);
 		
 	}
 }

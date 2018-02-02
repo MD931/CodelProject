@@ -1,6 +1,7 @@
 package jsf.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,7 @@ public class SearchContact implements Serializable{
 
 	String search;
 	List<Contact> contacts;
+	List<String> fields;
 	Contact selectedContact;
 	private ContactServices cs;
 
@@ -34,15 +36,24 @@ public class SearchContact implements Serializable{
 						.getCurrentInstance()
 						.getExternalContext()
 						.getContext());
-
+		fields = new ArrayList<>();
+		fields.add("firstname");
+		fields.add("lastname");
+		fields.add("email");
+		
 		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		search = params.get("search");
+		String field = params.get("field");
 		System.out.println("------ "+search);
 
 		/* INIT */
 		cs = (ContactServices) context.getBean("contactServices");
 		if(search != null) {
-			contacts =cs.searchContacts(search);
+			if(field != null && !field.isEmpty()) {
+				contacts = cs.searchByField(search, field);
+			}else {
+				contacts =cs.searchContacts(search);
+			}
 		}
 		/* INIT */
 	}

@@ -25,5 +25,4 @@ public class DAOPhoneNumber extends HibernateDaoSupport implements IDAOPhoneNumb
 		getHibernateTemplate().delete(entity);
 		
 	}
-
 }

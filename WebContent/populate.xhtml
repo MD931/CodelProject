@@ -40,7 +40,7 @@
 				class="fa fa-indent text"></i> <i class="fa fa-dedent text-active"></i>
 		</a></li>
 	</ul>
-	<form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs">
+		<form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" action="./search-contact.jsf" method="get">
 		<div class="form-group">
 			<div class="input-group">
 				<span class="input-group-btn">
@@ -48,7 +48,7 @@
 						class="btn btn-sm bg-white btn-icon rounded">
 						<i class="fa fa-search"></i>
 					</button>
-				</span> <input type="text" id="search_keywords"
+				</span> <input type="text" id="search" name="search"
 					class="form-control input-sm no-border rounded"
 					placeholder="#{msgs.searchContact}" />
 			</div>
@@ -68,7 +68,7 @@
 		<nav class="nav-primary hidden-xs">
 		<ul class="nav bg clearfix">
 			<br />
-<li><a> <i class="icon-plus icon text-success"></i>
+			<li><a> <i class="icon-plus icon text-success"></i>
 					<form action="./create-contact.jsf" method="post">
 						<p>
 							<input type="submit" name="submit" value="#{msgs.addContact}"
@@ -98,6 +98,23 @@
 						<p>
 							<input type="submit" name="submit" value="#{msgs.listGroups}"
 								class="btn btn-s-md btn-info" />
+						</p>
+					</form>
+			</a></li>
+			
+			<li><a> <i class="icon icon-magnifier text-success"></i>
+					<form action="./search-contact.jsf" method="post">
+						<p>
+							<input type="submit" name="submit" value="#{msgs.search}"
+								class="btn btn-s-md btn-info" />
+						</p>
+					</form>
+			</a></li>
+			<li><a> <i class=" icon-magic-wand text-warning"></i>
+					<form action="populate.jsf" method="post">
+						<p>
+							<input type="submit" name="submit" value="#{msgs.populate}"
+								class="btn btn-s-md btn-warning" />
 						</p>
 					</form>
 			</a></li>
