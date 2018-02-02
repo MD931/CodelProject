@@ -56,6 +56,8 @@ public class ContactServices {
 			dao.update(c);
 			return ResponseTools.SUCCESS;
 		} catch (StaleObjectStateException e) {
+			//Afficher l'exception et renvoyer le code d'erreur
+			e.printStackTrace();
 			return ResponseTools.VERSION_ERROR;
 		}
 	}

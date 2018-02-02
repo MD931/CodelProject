@@ -2,10 +2,12 @@ package jsf.beans;
 
 import java.io.Serializable;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
@@ -21,11 +23,11 @@ import util.ResponseTools;
 @ViewScoped
 public class EditGroupBean implements Serializable{
 	
-	String groupeName;
 	private ContactGroupServices cgs;
 	ContactGroup contactGroup;
 	private Long id;
-	
+	@ManagedProperty("#{msgs}")
+	private ResourceBundle msgs;
 	@PostConstruct
     public void init(){
 		ApplicationContext context =
@@ -48,16 +50,36 @@ public class EditGroupBean implements Serializable{
 		this.contactGroup = contactGroup;
 	}
 	
-	public void renameGroup() {
+	public String renameGroup() {
 		FacesContext context = FacesContext.getCurrentInstance();
-		int result = cgs.update(contactGroup);
-		if(result == ResponseTools.SUCCESS) {
-			context.addMessage("success", new FacesMessage("Modification effectuée avec succès"));
-		}else if(result == ResponseTools.VERSION_ERROR) {
-			context.addMessage("error", new FacesMessage("Version erreur"));
+		if(cgs.isExist(contactGroup.getGroupName())) {
+			context.addMessage("error", new FacesMessage(msgs.getString("groupNameExisted")));
+			return null;
+		} else if (contactGroup.getGroupName().isEmpty()){
+			context.addMessage("error", new FacesMessage(msgs.getString("errorGroupName")));
+			return null;
 		}else {
-			context.addMessage("error", new FacesMessage("Echec de modification"));
+			int result = cgs.update(contactGroup);
+			System.out.println(result);
+			if(result == ResponseTools.SUCCESS) {
+				context.addMessage("success", new FacesMessage(msgs.getString("updatedSucces")));
+				return null;
+			}else if(result == ResponseTools.VERSION_ERROR) {
+				context.addMessage("error", new FacesMessage(msgs.getString("errorVersion")));
+				return null;
+			}else {
+				context.addMessage("error", new FacesMessage(msgs.getString("errorUpdating")));
+				return null;
+			}
 		}
+	}
+
+	public ResourceBundle getMsgs() {
+		return msgs;
+	}
+
+	public void setMsgs(ResourceBundle msgs) {
+		this.msgs = msgs;
 	}
 	
 	

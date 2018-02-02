@@ -218,7 +218,7 @@ public class CreateContact implements Serializable {
 		this.setCity("");
 		this.setStreet("");
 		this.setCountry("");
-		this.setNumSiret(new Integer(null));
+		numSiret = null;
 		phones = new ArrayList<>();
 	}
 

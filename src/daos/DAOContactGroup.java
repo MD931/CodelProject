@@ -27,6 +27,14 @@ public class DAOContactGroup extends HibernateDaoSupport implements IDAOContactG
 	public void delete(ContactGroup entity) {
 		getHibernateTemplate().delete(entity);
 	}
+	
+	public boolean isExist(String groupName) {
+		String query = "from ContactGroup cg where cg.groupName like :search";
+		List<ContactGroup> contacsGroup = (List<ContactGroup>) getHibernateTemplate().findByNamedParam(query, "search",groupName );
+		if(contacsGroup==null || contacsGroup.size() == 1)
+			return true;
+		return false;
+	}
 
 	@Override
 	public List<ContactGroup> getAllContactGroup() {

@@ -44,7 +44,6 @@ public class SearchContact implements Serializable{
 		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		search = params.get("search");
 		String field = params.get("field");
-		System.out.println("------ "+search);
 
 		/* INIT */
 		cs = (ContactServices) context.getBean("contactServices");

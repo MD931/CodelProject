@@ -50,8 +50,10 @@ public class EditContact implements Serializable{
 	private ContactGroupServices cgs;
 	private EntrepriseServices es;
 	private PhoneNumberServices ps;
+	
 	@ManagedProperty("#{msgs}")
 	private ResourceBundle msgs;
+	
 	@PostConstruct
 	public void init(){
 		System.out.println("init");

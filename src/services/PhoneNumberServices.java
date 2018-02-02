@@ -13,6 +13,19 @@ public class PhoneNumberServices {
 		this.dao = dao;
 	}
 	
+	
+	public PhoneNumber read(Long id) {
+		return dao.read(id);
+	}
+	
+	public void create(PhoneNumber entity) {
+		dao.create(entity);
+	}
+	
+	public void update(PhoneNumber entity) {
+		dao.update(entity);
+	}
+	
 	public void delete(PhoneNumber entity) {
 		dao.delete(entity);
 	}

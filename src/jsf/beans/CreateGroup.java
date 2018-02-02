@@ -1,10 +1,12 @@
 package jsf.beans;
 
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 
@@ -20,9 +22,19 @@ public class CreateGroup {
 	
 	String groupName;
 	private ContactGroupServices cgs;
-
 	
-    @PostConstruct
+	@ManagedProperty("#{msgs}")
+	private ResourceBundle msgs;
+	
+    public ResourceBundle getMsgs() {
+		return msgs;
+	}
+
+	public void setMsgs(ResourceBundle msgs) {
+		this.msgs = msgs;
+	}
+
+	@PostConstruct
     public void init(){
 		ApplicationContext context =
 				WebApplicationContextUtils.getWebApplicationContext((ServletContext) FacesContext
@@ -43,10 +55,14 @@ public class CreateGroup {
 	public String create() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		if(groupName.isEmpty()) {
-			context.addMessage("ngroup", new FacesMessage("Group name required"));
+			context.addMessage("ngroup", new FacesMessage(msgs.getString("errorGroupName")));
+			return null;
+		} else if(cgs.isExist(groupName)){
+			context.addMessage("ngroup", new FacesMessage(msgs.getString("groupNameExisted")));
 			return null;
 		}
 		cgs.create(groupName);
+		context.addMessage("ngroup", new FacesMessage(msgs.getString("groupCreated")));
 		return null;
 	}
 }

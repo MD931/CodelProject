@@ -51,6 +51,9 @@ public class ContactGroupServices {
 			return ResponseTools.MAIN_ERROR;
 		}
 	}
+	public boolean isExist(String groupName) {
+		return dao.isExist(groupName);
+	}
 	
 	public void removeContact(ContactGroup group, Contact contact) {
 		group.removeContact(contact);
